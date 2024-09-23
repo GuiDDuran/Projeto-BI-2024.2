@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Adicionar Entrevistado</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Adicionar Entrevistado</h1>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email"><br>
+        <label for="nome_social">Nome Social:</label>
+        <input type="text" name="nome_social"><br>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" required><br>
+        <label for="sexo">Sexo:</label>
+        <input type="text" name="sexo" required><br>
+        <label for="genero_id">Gênero:</label>
+        <input type="number" name="genero_id" required><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <button onclick="window.history.back();" class="back-button">Voltar</button>
+</body>
+</html>

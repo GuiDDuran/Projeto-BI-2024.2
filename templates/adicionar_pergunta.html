@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Adicionar Pergunta</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Adicionar Pergunta</h1>
+    <form method="POST">
+        <label for="pergunta_texto">Texto da Pergunta:</label>
+        <input type="text" name="pergunta_texto" required><br>
+        <label for="tipo_id">Tipo de Pergunta:</label>
+        <input type="number" name="tipo_id" required><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <button onclick="window.history.back();" class="back-button">Voltar</button>
+</body>
+</html>

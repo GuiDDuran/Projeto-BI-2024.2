@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Entrevistados</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Entrevistados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Data de Nascimento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrevistado in entrevistados %}
+            <tr>
+                <td>{{ entrevistado[0] }}</td>
+                <td>{{ entrevistado[1] }}</td>
+                <td>{{ entrevistado[2] }}</td>
+                <td>{{ entrevistado[4] }}</td>
+                <td>
+                    <a href="/editar_entrevistado/{{ entrevistado[0] }}">Editar</a> | 
+                    <form action="/excluir_entrevistado/{{ entrevistado[0] }}" method="POST" style="display:inline;">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/adicionar_entrevistado">Adicionar Entrevistado</a>
+    <button onclick="window.history.back();" class="back-button">Voltar</button>
+</body>
+</html>

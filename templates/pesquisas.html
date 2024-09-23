@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pesquisas</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Pesquisas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Data Início</th>
+                <th>Data Fim</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pesquisa in pesquisas %}
+            <tr>
+                <td>{{ pesquisa[0] }}</td>
+                <td>{{ pesquisa[1] }}</td>
+                <td>{{ pesquisa[2] }}</td>
+                <td>{{ pesquisa[3] }}</td>
+                <td>
+                    <a href="/editar_pesquisa/{{ pesquisa[0] }}">Editar</a> | 
+                    <form action="/excluir_pesquisa/{{ pesquisa[0] }}" method="POST" style="display:inline;">
+                        <button type="submit">Excluir</button>
+                    </form>
+                    <a href="/perguntas/{{ pesquisa[0] }}">Perguntas</a> | 
+                    <a href="/respostas/{{ pesquisa[0] }}">Respostas</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/adicionar_pesquisa">Adicionar Pesquisa</a>
+    <button onclick="window.history.back();" class="back-button">Voltar</button>
+</body>
+</html>

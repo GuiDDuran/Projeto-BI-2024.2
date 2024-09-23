@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Editar Entrevistado</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Editar Entrevistado</h1>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="{{ entrevistado[1] }}" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" value="{{ entrevistado[2] }}"><br>
+        <label for="nome_social">Nome Social:</label>
+        <input type="text" name="nome_social" value="{{ entrevistado[3] }}"><br>
+        <label for="data_nascimento">Data de Nascimento:</label>
+        <input type="date" name="data_nascimento" value="{{ entrevistado[4] }}" required><br>
+        <label for="sexo">Sexo:</label>
+        <input type="text" name="sexo" value="{{ entrevistado[5] }}" required><br>
+        <label for="genero_id">Gênero:</label>
+        <input type="number" name="genero_id" value="{{ entrevistado[6] }}" required><br><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <button onclick="window.history.back();" class="back-button">Voltar</button>
+</body>
+</html>

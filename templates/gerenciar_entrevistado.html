@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Entrevistados</title>
+</head>
+<body>
+    <h1>Gerenciar Entrevistados</h1>
+    <form method="POST">
+        <input type="text" name="search_name" placeholder="Buscar pelo nome do entrevistado" required>
+        <input type="submit" value="Buscar">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Nome</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrevistado in entrevistados %}
+                <tr>
+                    <td>{{ entrevistado[0] }}</td>
+                    <td>{{ entrevistado[1] }}</td>
+                    <td>
+                        <a href="{{ url_for('informacao_entrevistado', entrevistado_id=entrevistado[0]) }}">Visualizar</a>
+                        <a href="{{ url_for('editar_entrevistado', entrevistado_id=entrevistado[0]) }}">Editar</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Nenhum entrevistado encontrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

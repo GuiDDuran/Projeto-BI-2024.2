@@ -1,0 +1,7 @@
+<h2>Informações do Entrevistado</h2>
+<p>Nome: {{ entrevistado[0] }}</p>
+<p>Email: {{ entrevistado[1] }}</p>
+<p>Sexo: {{ entrevistado[2] }}</p>
+<p>Data de Nascimento: {{ entrevistado[3] }}</p>
+
+<a href="{{ url_for('respostas_entrevistado', entrevistado_id=entrevistado_id) }}" class="btn btn-primary">Ver Perguntas e Respostas</a>

@@ -324,6 +324,9 @@ def cadastrar_entrevista():
     pesquisa_id = request.args.get('pesquisa_id')
     entrevistado_id = request.args.get('entrevistado_id')
     print(f"pesquisa_id: {pesquisa_id}, entrevistado_id: {entrevistado_id}")
+
+
+
     conn = get_db_connection()
     cur = conn.cursor()
 
@@ -335,18 +338,44 @@ def cadastrar_entrevista():
     cur.execute("SELECT entrevistado_nome FROM entrevistado WHERE entrevistado_id = %s", (entrevistado_id,))
     entrevistado_info = cur.fetchone()
 
-    cur.close()
-    conn.close()
-
-    # Verificar se a pesquisa ou o entrevistado foram encontrados
     if pesquisa_info is None or entrevistado_info is None:
         return "Pesquisa ou entrevistado não encontrados.", 404
 
     pesquisa_nome = pesquisa_info[0]
     entrevistado_nome = entrevistado_info[0]
 
-    # Passar as variáveis `pesquisa_nome` e `entrevistado_nome` para o template
-    return render_template('cadastrar_entrevista.html', pesquisa_nome=pesquisa_nome, entrevistado_nome=entrevistado_nome)
+    # Buscar a pergunta atual com base no índice, incluindo o tipo da pergunta
+    cur.execute("""
+        SELECT pp.pergunta_id, pp.pergunta_texto, ppt.pesquisa_pergunta_tipo_id
+        FROM pergunta pp
+        JOIN pesquisa_pergunta_tipo ppt ON pp.pesquisa_pergunta_tipo_id = ppt.pesquisa_pergunta_tipo_id
+        WHERE pp.pesquisa_id = %s
+        ORDER BY pp.pergunta_id
+        LIMIT 1 OFFSET %s
+    """, (pesquisa_id, indice_pergunta))
+    pergunta_info = cur.fetchone()
+
+    if pergunta_info is None:
+        return "Não há mais perguntas.", 200
+
+    pergunta_id, pergunta_texto, tipo_pergunta_id = pergunta_info
+
+    # Buscar as opções de resposta, caso a pergunta tenha (para escolha única e múltipla escolha)
+    cur.execute("SELECT opcao_id, opcao_texto FROM opcao_resposta WHERE pergunta_id = %s", (pergunta_id,))
+    opcoes_resposta = cur.fetchall()
+
+    conn.close()
+
+    return render_template('cadastrar_entrevista.html',
+                           pesquisa_nome=pesquisa_nome,
+                           entrevistado_nome=entrevistado_nome,
+                           pergunta_texto=pergunta_texto,
+                           tipo_pergunta_id=tipo_pergunta_id,
+                           opcoes_resposta=opcoes_resposta,
+                           indice_pergunta=indice_pergunta,
+                           pesquisa_id=pesquisa_id,
+                           entrevistado_id=entrevistado_id)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

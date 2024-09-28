@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Endereço</title>
+    <title>Entrevista</title>
 </head>
 <body>
-    <h1>Cadastrar Endereço para a Pesquisa: {{ pesquisa_nome }}</h1>
-    <h2>Entrevistado: {{ entrevistado_nome }}</h2>
+    <h1>{{ pesquisa_nome }} - Entrevistado: {{ entrevistado_nome }}</h1>
+    <h2>Pergunta {{ indice_pergunta + 1 }}: {{ pergunta_texto }}</h2>
+
+    <form method="POST" action="{{ url_for('entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=indice_pergunta+1) }}">
+
+        <!-- Se for uma pergunta de Escolha Única (tipo 1) -->
+        {% if tipo_pergunta_id == 1 %}
+            {% for opcao in opcoes_resposta %}
+                <input type="radio" name="resposta" value="{{ opcao[0] }}"> {{ opcao[1] }}<br>
+            {% endfor %}
+
+        <!-- Se for uma pergunta de Múltipla Escolha (tipo 2) -->
+        {% elif tipo_pergunta_id == 2 %}
+            {% for opcao in opcoes_resposta %}
+                <input type="checkbox" name="resposta" value="{{ opcao[0] }}"> {{ opcao[1] }}<br>
+            {% endfor %}
+
+        <!-- Se for uma pergunta de Sim/Não (tipo 3) -->
+        {% elif tipo_pergunta_id == 3 %}
+            <input type="radio" name="resposta" value="sim"> Sim<br>
+            <input type="radio" name="resposta" value="nao"> Não<br>
+
+        <!-- Se for uma pergunta de Sim/Não/NI (tipo 4) -->
+        {% elif tipo_pergunta_id == 4 %}
+            <input type="radio" name="resposta" value="sim"> Sim<br>
+            <input type="radio" name="resposta" value="nao"> Não<br>
+            <input type="radio" name="resposta" value="ni"> Não se aplica<br>
+
+        <!-- Se for uma pergunta de Verdadeiro/Falso (tipo 5) -->
+        {% elif tipo_pergunta_id == 5 %}
+            <input type="radio" name="resposta" value="verdadeiro"> Verdadeiro<br>
+            <input type="radio" name="resposta" value="falso"> Falso<br>
+
+        <!-- Se for uma pergunta de Texto Livre (tipo 6) -->
+        {% elif tipo_pergunta_id == 6 %}
+            <textarea name="resposta" rows="5" cols="40"></textarea><br>
+
+        {% endif %}
+
+        <button type="submit">Próxima</button>
+    </form>
 </body>
 </html>

@@ -1,70 +1,81 @@
 /* Estilos Gerais */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f9; /* Cor suave para o fundo */
-  }
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #e5e7eb; /* Cor de fundo suave */
+}
 
-  /* Container principal */
-  .container {
+/* Container principal */
+.page-container {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db; /* Borda leve e discreta */
+    padding: 30px; /* Mais espaçamento interno */
+    margin: 20px;
+    border-radius: 15px; /* Bordas mais arredondadas para um visual mais moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 380px; /* Largura máxima para telas menores */
     width: 100%;
-    max-width: 430px; /* Largura aproximada para iPhone 14 Pro Max */
-    background-color: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-  }
+}
 
-  /* Título */
-  h1 {
+/* Estilização do título */
+h1 {
     font-size: 2rem;
-    color: #333;
-    margin-bottom: 20px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 600;
     letter-spacing: 1px;
-  }
+}
 
-  /* Botões */
-  button {
-    width: 80%;
-    max-width: 250px;
-    padding: 15px 20px;
-    margin: 10px 0;
-    font-size: 1.2rem;
+/* Container para os botões */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Para os botões ficarem alinhados em telas menores */
+}
+
+/* Estilização dos botões */
+button {
+    padding: 15px 40px;
+    background-color: #2e8b57;
     color: white;
-    background-color: #28a745; /* Verde moderno */
     border: none;
-    border-radius: 10px;
+    border-radius: 8px; /* Bordas mais arredondadas */
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-  }
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra nos botões */
+}
 
-  button:hover {
-    background-color: #218838;
-    transform: translateY(-3px);
-  }
+button:hover {
+    background-color: #3cb371;
+    transform: translateY(-3px); /* Efeito de elevação no hover */
+}
 
-  button:active {
-    background-color: #1e7e34;
-    transform: translateY(1px);
-  }
+button:active {
+    background-color: #2e8b57;
+    transform: translateY(1px); /* Efeito de clique */
+}
 
-  /* Responsividade */
-  @media only screen and (max-width: 430px) {
-    .container {
-      padding: 20px;
+/* Responsividade */
+@media only screen and (max-width: 430px) {
+    .page-container {
+        padding: 20px;
+        margin: 10px;
     }
 
     h1 {
-      font-size: 1.8rem;
+        font-size: 1.8rem;
     }
 
     button {
-      font-size: 1.1rem;
+        width: 100%;
+        padding: 15px 0;
+        font-size: 1rem;
     }
-  }
+}

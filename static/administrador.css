@@ -1,75 +1,81 @@
-/* Centralizando o conteúdo da página */
+/* Estilos Gerais */
 body {
     display: flex;
-    flex-direction: column; /* Para permitir o alinhamento vertical do cabeçalho e conteúdo */
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #e5e7eb; /* Cor de fundo suave */
 }
 
 /* Container principal */
 .page-container {
-    border: 1px solid #000000; /* Borda fina e cinza */
-    padding: 20px; /* Espaçamento interno */
-    margin: 20px; /* Espaçamento externo para afastar do limite da página */
-    border-radius: 5px; /* Bordas levemente arredondadas */
+    background-color: #ffffff;
+    border: 1px solid #d1d5db; /* Borda leve e discreta */
+    padding: 30px; /* Mais espaçamento interno */
+    margin: 20px;
+    border-radius: 15px; /* Bordas mais arredondadas para um visual mais moderno */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 380px; /* Largura máxima para telas menores */
+    width: 100%;
     text-align: center;
-}
-
-/* Cabeçalho com o botão de voltar */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 40px;
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 2.5em;
+    font-size: 2rem;
     color: #2c3e50;
-    margin-left: 10px; /* Espaço entre o botão e o título */
-}
-
-/* Estilização do botão de voltar */
-.back-button {
-    background-color: #2e8b57; /* Fundo verde */
-    border: none;
-    font-size: 24px;
-    color: white; /* Cor da seta */
-    padding: 10px; /* Adicionando padding */
-    border-radius: 5px; /* Cantos arredondados */
-    cursor: pointer;
-    margin-right: 10px; /* Espaço entre o botão e o título */
-    transition: background-color 0.3s, transform 0.3s; /* Transições suaves para cor e transformação */
-}
-
-.back-button:hover {
-    background-color: #3cb371; /* Verde mais claro ao passar o mouse */
-    transform: scale(1.05); /* Aumenta um pouco o botão ao passar o mouse */
+    margin-bottom: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* Container para os botões */
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 20px;  /* Espaçamento horizontal entre os botões */
+    gap: 15px;
+    flex-wrap: wrap; /* Para os botões ficarem alinhados em telas menores */
 }
 
 /* Estilização dos botões */
 button {
-    padding: 15px 30px;
-    background-color: #2e8b57; /* Cor verde escura */
+    padding: 15px 40px;
+    background-color: #2e8b57;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px; /* Bordas mais arredondadas */
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra nos botões */
 }
 
 button:hover {
-    background-color: #3cb371; /* Cor verde mais clara ao passar o mouse */
+    background-color: #3cb371;
+    transform: translateY(-3px); /* Efeito de elevação no hover */
+}
+
+button:active {
+    background-color: #2e8b57;
+    transform: translateY(1px); /* Efeito de clique */
+}
+
+/* Responsividade */
+@media only screen and (max-width: 430px) {
+    .page-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px 0;
+        font-size: 1rem;
+    }
 }

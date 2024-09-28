@@ -1,0 +1,68 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do título */
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 20px; /* Reduzir espaço abaixo do título */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    font-size: 1.5em;
+    margin-right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilização do formulário de cadastro */
+.form-cadastro {
+    margin-top: 20px;
+}
+
+/* Labels e Inputs */
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Botão de submissão */
+.submit-button {
+    padding: 10px 20px;
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}

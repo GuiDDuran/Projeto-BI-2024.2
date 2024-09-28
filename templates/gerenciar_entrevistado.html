@@ -2,38 +2,47 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Entrevistados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='gerenciar_entrevistado.css') }}">
 </head>
 <body>
-    <h1>Gerenciar Entrevistados</h1>
-    <form method="POST">
-        <input type="text" name="search_name" placeholder="Buscar pelo nome do entrevistado" required>
-        <input type="submit" value="Buscar">
-    </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Número</th>
-                <th>Nome</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entrevistado in entrevistados %}
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h1>Gerenciar Entrevistados</h1>
+        </div>
+
+        <form method="POST" class="search-form">
+            <input type="text" name="search_name" placeholder="Buscar pelo nome do entrevistado" class="search-input" required>
+            <input type="submit" value="Buscar" class="search-button">
+        </form>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nome</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entrevistado in entrevistados %}
                 <tr>
                     <td>{{ entrevistado[0] }}</td>
                     <td>{{ entrevistado[1] }}</td>
                     <td>
-                        <a href="{{ url_for('informacao_entrevistado', entrevistado_id=entrevistado[0]) }}">Visualizar</a>
-                        <a href="{{ url_for('editar_entrevistado', entrevistado_id=entrevistado[0]) }}">Editar</a>
+                        <a href="{{ url_for('informacao_entrevistado', entrevistado_id=entrevistado[0]) }}" class="action-link">Visualizar</a>
+                        <a href="{{ url_for('editar_entrevistado', entrevistado_id=entrevistado[0]) }}" class="action-link">Editar</a>
                     </td>
                 </tr>
-            {% else %}
+                {% else %}
                 <tr>
                     <td colspan="3">Nenhum entrevistado encontrado.</td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

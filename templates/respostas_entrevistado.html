@@ -1,6 +1,26 @@
-<h2>Respostas do Entrevistado: {{ entrevistado_nome }}</h2>
-<h3>Pesquisa: {{ pesquisa_nome }}</h3>
-{% for pergunta in perguntas_respostas %}
-    <h4>{{ pergunta[1] }}: {{ pergunta[2] }}</h4>
-    <p>Resposta: {{ pergunta[3] }}</p>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respostas do Entrevistado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='respostas_entrevistado.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h2>Pesquisa: {{ pesquisa_nome }}</h2>
+        </div>
+
+        <h3>Respostas do Entrevistado: {{ entrevistado_nome }}</h3>
+
+        <div class="respostas">
+            {% for pergunta in perguntas_respostas %}
+                <h4>{{ pergunta[1] }}: {{ pergunta[2] }}</h4>
+                <p>Resposta: {{ pergunta[3] }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

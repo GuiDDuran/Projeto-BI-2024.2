@@ -1,0 +1,86 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 600px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+/* Estilização do título da página */
+h1 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-left: 10px; /* Espaço entre o botão e o título */
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}
+
+/* Estilização do formulário */
+.form-container {
+    display: flex;
+    flex-direction: column; /* Coloca os elementos em coluna */
+    align-items: center; /* Centraliza os elementos */
+}
+
+/* Estilização dos rótulos e campos de entrada */
+label {
+    font-size: 1.2em;
+    margin: 10px 0; /* Espaço acima e abaixo dos rótulos */
+}
+
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0; /* Margem entre os campos */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Estilização do botão de cadastrar */
+.cadastrar-button {
+    padding: 10px 20px;
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cadastrar-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}

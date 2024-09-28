@@ -1,0 +1,28 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Alinhamento central vertical */
+    height: 100vh; /* Ocupar toda a altura da tela */
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Cor de fundo clara */
+}
+
+/* Container principal */
+.container {
+    text-align: center; /* Centralizar texto */
+}
+
+/* Estilização do título */
+h1 {
+    font-size: 2.5em; /* Tamanho do título */
+    color: #2c3e50; /* Cor do título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+}
+
+/* Estilização do parágrafo */
+p {
+    font-size: 1.2em; /* Tamanho da fonte do parágrafo */
+    color: #34495e; /* Cor do parágrafo */
+}

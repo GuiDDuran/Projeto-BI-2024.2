@@ -1,0 +1,87 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+/* Estilização do título da página */
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-left: 10px; /* Espaço entre o botão e o título */
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}
+
+/* Estilização do formulário de edição */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens do formulário */
+}
+
+/* Estilização dos campos do formulário */
+label {
+    margin-top: 10px; /* Espaço acima de cada label */
+    color: #2c3e50; /* Cor do texto */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px; /* Espaço abaixo de cada campo */
+}
+
+/* Estilização do botão de salvar */
+.save-button {
+    padding: 10px 20px;
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}

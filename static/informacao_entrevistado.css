@@ -1,0 +1,71 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+/* Estilização do título */
+h2 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-left: 10px; /* Espaço entre o botão e o título */
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}
+
+/* Centralizando as informações do entrevistado */
+.info {
+    text-align: left; /* Para alinhar os textos à esquerda */
+    margin: 20px 0; /* Espaço entre as informações */
+    font-size: 1.2em; /* Tamanho da fonte */
+}
+
+/* Botão de ver perguntas e respostas */
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}

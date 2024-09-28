@@ -1,7 +1,26 @@
-<h2>Informações do Entrevistado</h2>
-<p>Nome: {{ entrevistado[0] }}</p>
-<p>Email: {{ entrevistado[1] }}</p>
-<p>Sexo: {{ entrevistado[2] }}</p>
-<p>Data de Nascimento: {{ entrevistado[3] }}</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações do Entrevistado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='informacao_entrevistado.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h2>Informações do Entrevistado</h2>
+        </div>
 
-<a href="{{ url_for('respostas_entrevistado', entrevistado_id=entrevistado_id) }}" class="btn btn-primary">Ver Perguntas e Respostas</a>
+        <div class="info">
+            <p><strong>Nome:</strong> {{ entrevistado[0] }}</p>
+            <p><strong>Email:</strong> {{ entrevistado[1] }}</p>
+            <p><strong>Sexo:</strong> {{ entrevistado[2] }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ entrevistado[3] }}</p>
+        </div>
+
+        <a href="{{ url_for('respostas_entrevistado', entrevistado_id=entrevistado_id) }}" class="btn btn-primary">Ver Perguntas e Respostas</a>
+    </div>
+</body>
+</html>

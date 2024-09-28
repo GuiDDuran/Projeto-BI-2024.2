@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-    <h1>Página Inicial</h1>
-    <button onclick="window.location.href='/listar_pesquisa'">Entrevistador</button>
-    <button onclick="window.location.href='/administrador'">Administrador</button>
+    <div class="container">
+        <h1>Censo Ilha Primeira</h1>
+        <div class="button-container">
+            <button onclick="window.location.href='/listar_pesquisa'">Entrevistador</button>
+            <button onclick="window.location.href='/administrador'">Administrador</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -4,39 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Entrevistado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastrar_entrevistado.css') }}">
 </head>
 <body>
-    <h1>Cadastrar Entrevistado para a Pesquisa: {{ pesquisa_nome }}</h1>
-    
-    <form action="{{ url_for('salvar_entrevistado') }}" method="POST">
-        <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h1>Cadastro de Entrevistado</h1>
+        </div>
+        
+        <h2>Pesquisa: {{ pesquisa_nome }}</h2>
 
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
+        <form action="{{ url_for('salvar_entrevistado') }}" method="POST" class="form-cadastro">
+            <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
 
-        <label for="nome_social">Nome Social:</label>
-        <input type="text" id="nome_social" name="nome_social"><br>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+            <label for="nome_social">Nome Social:</label>
+            <input type="text" id="nome_social" name="nome_social"><br>
 
-        <label for="sexo">Sexo:</label>
-        <select id="sexo" name="sexo">
-            <option value="M">M</option>
-            <option value="F">F</option>
-        </select><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
 
-        <label for="genero">Gênero:</label>
-        <select id="genero" name="genero_id">
-            {% for genero in generos %}
-            <option value="{{ genero[0] }}">{{ genero[1] }}</option>
-            {% endfor %}
-        </select><br>
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo" required>
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select><br>
 
-        <label for="data_nascimento">Data de Nascimento:</label>
-        <input type="date" id="data_nascimento" name="data_nascimento" required><br>
+            <label for="genero">Gênero:</label>
+            <select id="genero" name="genero_id" required>
+                {% for genero in generos %}
+                <option value="{{ genero[0] }}">{{ genero[1] }}</option>
+                {% endfor %}
+            </select><br>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" id="data_nascimento" name="data_nascimento" required><br>
+
+            <button type="submit" class="submit-button">Cadastrar</button>
+        </form>
+    </div>
 </body>
 </html>

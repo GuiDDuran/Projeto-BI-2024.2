@@ -1,0 +1,120 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+/* Estilização do título da página */
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-left: 10px; /* Espaço entre o botão e o título */
+}
+
+/* Estilização do nome da pesquisa */
+.nome-pesquisa {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin: 20px 0; /* Espaço acima e abaixo do nome da pesquisa */
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}
+
+/* Estilização da tabela */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho da tabela */
+.styled-table thead tr {
+    background-color: #2e8b57; /* Verde escuro */
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Células da tabela */
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+/* Alternar cor das linhas */
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Linhas ao passar o mouse */
+.styled-table tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+/* Estilização do botão de ação */
+.action-button {
+    padding: 10px 20px;
+    background-color: transparent; /* Fundo transparente */
+    color: #2e8b57; /* Letra verde */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Texto em negrito */
+    text-decoration: none; /* Remove sublinhado */
+}
+
+.action-button:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+/* Estilização do botão de cadastrar nova pergunta */
+.cadastrar-button {
+    padding: 10px 20px;
+    background-color: #2e8b57; /* Verde escuro */
+    color: white; /* Letra branca */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Espaço acima do botão de cadastrar */
+}
+
+.cadastrar-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}

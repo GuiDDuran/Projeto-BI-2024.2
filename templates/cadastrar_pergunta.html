@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Pergunta</title>
+    <title>Cadastro de Pergunta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastrar_pergunta.css') }}">
 </head>
 <body>
-    <h1>Cadastrar Nova Pergunta</h1>
-    <form action="{{ url_for('cadastrar_pergunta', pesquisa_id=pesquisa_id) }}" method="POST">
-        <label for="pergunta_texto">Texto da Pergunta:</label>
-        <input type="text" name="pergunta_texto" id="pergunta_texto" required>
-        <button type="submit">Cadastrar Pergunta</button>
-    </form>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.location.href='/listar_perguntas/{{ pesquisa_id }}'">←</button>
+            <h1>Cadastro de Pergunta</h1>
+        </div>
+        
+        <h2 class="nome-pesquisa">Pesquisa: {{ pesquisa_nome }}</h2>
+
+        <!-- Formulário para cadastrar pergunta -->
+        <form action="{{ url_for('cadastrar_pergunta') }}" method="POST">
+            <!-- Campo oculto para enviar o ID da pesquisa -->
+            <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
+
+            <!-- Campo para texto da pergunta -->
+            <label for="pergunta_texto">Texto da Pergunta:</label><br>
+            <input type="text" id="pergunta_texto" name="pergunta_texto" required><br><br>
+
+            <!-- Seleção do tipo de pergunta -->
+            <label for="pesquisa_pergunta_tipo">Tipo de Pergunta:</label><br>
+            <select id="pesquisa_pergunta_tipo" name="pesquisa_pergunta_tipo" required>
+                <option value="">Selecione o tipo de pergunta</option>
+                {% for tipo in tipos_pergunta %}
+                    <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <!-- Se o tipo for escolha única ou múltipla escolha, adicionar opções -->
+            <div id="opcoes_resposta" style="display:none;">
+                <label>Opções de Resposta:</label><br>
+                <div id="respostas_container">
+                    <input type="text" name="opcao_resposta[]" placeholder="Opção 1" style="margin-bottom: 20px;"><br>
+                </div>
+                <button type="button" class="adicionar-opcao" onclick="adicionarOpcao()">Adicionar Opção</button><br><br>
+            </div>
+
+            <button type="submit" class="salvar-button">Salvar Pergunta</button>
+        </form>
+    </div>
+
+    <!-- Script para mostrar ou esconder opções de resposta -->
+    <script>
+        document.getElementById('pesquisa_pergunta_tipo').addEventListener('change', function() {
+            var tipo = this.value;
+            var opcoesDiv = document.getElementById('opcoes_resposta');
+            if (tipo === '1' || tipo === '2') {  // Escolha única ou múltipla escolha
+                opcoesDiv.style.display = 'block';
+            } else {
+                opcoesDiv.style.display = 'none';
+            }
+        });
+
+        function adicionarOpcao() {
+            var container = document.getElementById('respostas_container');
+            var numOpcoes = container.getElementsByTagName('input').length;
+
+            // Limitar a 5 opções
+            if (numOpcoes < 5) {
+                var novaOpcao = document.createElement('input');
+                novaOpcao.type = 'text';
+                novaOpcao.name = 'opcao_resposta[]';
+                novaOpcao.placeholder = 'Opção ' + (numOpcoes + 1);
+                novaOpcao.style.marginBottom = '20px'; // Espaço entre as opções
+                container.appendChild(novaOpcao);
+                container.appendChild(document.createElement('br')); // Espaço adicional
+            }
+        }
+    </script>
 </body>
 </html>

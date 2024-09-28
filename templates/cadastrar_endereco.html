@@ -4,40 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Endereço</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastrar_endereco.css') }}">
 </head>
 <body>
-    <h1>Cadastrar Endereço para a Pesquisa: {{ pesquisa_nome }}</h1>
-    <h2>Entrevistado: {{ entrevistado_nome }}</h2>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h1>Cadastro de Endereço</h1>
+        </div>
+        
+        <h2>Entrevistado: {{ entrevistado_nome }}</h2>
+        <h3>Pesquisa: {{ pesquisa_nome }}</h3>
 
-    <form action="{{ url_for('salvar_endereco') }}" method="POST">
-        <input type="hidden" name="entrevistado_id" value="{{ entrevistado_id }}">
-        <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
+        <form action="{{ url_for('salvar_endereco') }}" method="POST" class="form-cadastro">
+            <input type="hidden" name="entrevistado_id" value="{{ entrevistado_id }}">
+            <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
 
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" name="cep" required><br>
+            <label for="cep">CEP:</label>
+            <input type="text" id="cep" name="cep" required><br>
 
-        <label for="logradouro">Logradouro:</label>
-        <input type="text" id="logradouro" name="logradouro" required><br>
+            <label for="logradouro">Logradouro:</label>
+            <input type="text" id="logradouro" name="logradouro" required><br>
 
-        <label for="numero">Número:</label>
-        <input type="text" id="numero" name="numero" required><br>
+            <label for="numero">Número:</label>
+            <input type="text" id="numero" name="numero" required><br>
 
-        <label for="complemento">Complemento:</label>
-        <input type="text" id="complemento" name="complemento"><br>
+            <label for="complemento">Complemento:</label>
+            <input type="text" id="complemento" name="complemento"><br>
 
-        <label for="bairro">Bairro:</label>
-        <input type="text" id="bairro" name="bairro" required><br>
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" required><br>
 
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="cidade" required><br>
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required><br>
 
-        <label for="uf">UF:</label>
-        <input type="text" id="uf" name="uf" maxlength="2" required><br>
+            <label for="uf">UF:</label>
+            <input type="text" id="uf" name="uf" maxlength="2" required><br>
 
-        <label for="descricao">Descrição:</label>
-        <input type="text" id="descricao" name="descricao" required><br>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required><br>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+            <button type="submit" class="submit-button">Cadastrar</button>
+        </form>
+    </div>
 </body>
 </html>

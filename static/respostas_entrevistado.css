@@ -1,0 +1,72 @@
+/* Centralizando o conteúdo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ajustar a largura máxima */
+    text-align: center;
+    margin: 20px auto; /* Margem para não colar na borda superior */
+}
+
+/* Estilização do cabeçalho */
+.header {
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+/* Estilização do título da pesquisa */
+h2 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-left: 10px; /* Espaço entre o botão e o título */
+}
+
+/* Estilização do nome do entrevistado */
+h3 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-top: 20px; /* Espaço acima do nome do entrevistado */
+}
+
+/* Estilização do botão de voltar */
+.back-button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back-button:hover {
+    background-color: #3cb371; /* Verde mais claro */
+}
+
+/* Estilização das respostas */
+.respostas {
+    text-align: left; /* Para alinhar os textos à esquerda */
+    margin: 20px 0; /* Espaço entre as respostas */
+    font-size: 1.2em; /* Tamanho da fonte */
+}
+
+/* Estilização das perguntas e respostas */
+h4 {
+    color: #2c3e50;
+    margin: 5px 0; /* Menos espaço acima da pergunta */
+}
+
+p {
+    margin: 0 0 20px; /* Espaço reduzido entre a pergunta e sua resposta, e aumentado para a próxima pergunta */
+}

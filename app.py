@@ -498,30 +498,67 @@ def listar_perguntas(pesquisa_id):
     return render_template('listar_perguntas.html', perguntas=perguntas, pesquisa_id=pesquisa_id, nome_pesquisa=nome_pesquisa[0])
 
 # Rota para cadastrar uma nova pergunta
-@app.route('/cadastrar_pergunta/<int:pesquisa_id>', methods=['GET', 'POST'])
-def cadastrar_pergunta(pesquisa_id):
+@app.route('/cadastrar_pergunta', methods=['GET', 'POST'])
+def cadastrar_pergunta():
     if request.method == 'POST':
-        # Processa os dados enviados pelo formulário
-        pergunta_texto = request.form.get('pergunta_texto')
+        # Pegue os dados enviados pelo formulário
+        pesquisa_id = request.form.get('pesquisa_id')  # ID da pesquisa
+        print(f"pesquisa_id: {pesquisa_id} aqui") # Não está recebendo
+        pergunta_texto = request.form.get('pergunta_texto')  # Texto da pergunta
+        pesquisa_pergunta_tipo_id = request.form.get('pesquisa_pergunta_tipo')  # Tipo da pergunta
+        opcoes_resposta = request.form.getlist('opcao_resposta[]')  # Lista de opções de resposta
+
+        # Verificações para garantir que nenhum valor necessário está "None" ou vazio
+        if not pesquisa_id or pesquisa_id == 'None':
+            return "Erro: pesquisa_id não foi fornecido corretamente", 400  # Retorna erro
+        if not pergunta_texto:
+            return "Erro: pergunta_texto não foi fornecido", 400  # Retorna erro
+        if not pesquisa_pergunta_tipo_id or pesquisa_pergunta_tipo_id == 'None':
+            return "Erro: pesquisa_pergunta_tipo_id não foi fornecido", 400  # Retorna erro
 
         conn = get_db_connection()
         cur = conn.cursor()
 
-        # Inserir a nova pergunta no banco de dados
+        # Insere a pergunta na tabela `pesquisa_pergunta`
         cur.execute("""
-            INSERT INTO pesquisa_pergunta (pesquisa_id, pergunta_texto)
-            VALUES (%s, %s)
-        """, (pesquisa_id, pergunta_texto))
+            INSERT INTO pesquisa_pergunta (pergunta_texto, pesquisa_id, pesquisa_pergunta_tipo_id)
+            VALUES (%s, %s, %s) RETURNING pesquisa_pergunta_id
+        """, (pergunta_texto, int(pesquisa_id), int(pesquisa_pergunta_tipo_id)))
+        
+        pergunta_id = cur.fetchone()[0]  # Pega o ID da pergunta recém-criada
 
+        # Se o tipo da pergunta for "escolha única" ou "múltipla escolha", insere as opções
+        if pesquisa_pergunta_tipo_id in ['1', '2']:  # 1 para "Escolha única" e 2 para "Múltipla escolha"
+            for opcao in opcoes_resposta:
+                if opcao:  # Verifica se a opção não está vazia
+                    cur.execute("""
+                        INSERT INTO pesquisa_pergunta_opcao (pergunta_id, opcao_texto)
+                        VALUES (%s, %s)
+                    """, (pergunta_id, opcao))
+
+        # Salva as alterações no banco de dados
         conn.commit()
         cur.close()
         conn.close()
 
-        # Redirecionar para a página de listar perguntas
+        # Redireciona para a página de listar perguntas após salvar
         return redirect(url_for('listar_perguntas', pesquisa_id=pesquisa_id))
 
-    # Exibir o formulário de cadastro se for uma requisição GET
-    return render_template('cadastrar_pergunta.html', pesquisa_id=pesquisa_id)
+    # Se for um GET, exibe o formulário de cadastro de pergunta
+    pesquisa_id = request.args.get('pesquisa_id')  # Obtém o ID da pesquisa
+    pesquisa_nome = ...  # Pega o nome da pesquisa a partir do banco (você deve implementar isso)
+
+    # Busca os tipos de pergunta disponíveis
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT pesquisa_pergunta_tipo_id, pesquisa_pergunta_tipo FROM pesquisa_pergunta_tipo")
+    tipos_pergunta = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    # Renderiza o template para cadastrar pergunta
+    return render_template('cadastrar_pergunta.html', pesquisa_nome=pesquisa_nome, pesquisa_id=pesquisa_id, tipos_pergunta=tipos_pergunta)
 
 if __name__ == '__main__':
     app.run(debug=True)

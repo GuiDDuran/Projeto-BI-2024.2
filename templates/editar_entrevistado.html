@@ -1,21 +1,39 @@
-<form method="POST">
-    <label for="entrevistado_nome">Nome:</label>
-    <input type="text" name="entrevistado_nome" value="{{ entrevistado[1] }}" required><br>
-    
-    <label for="entrevistado_email">Email:</label>
-    <input type="email" name="entrevistado_email" value="{{ entrevistado[2] }}" required><br>
-    
-    <label for="entrevistado_nome_social">Nome Social:</label>
-    <input type="text" name="entrevistado_nome_social" value="{{ entrevistado[3] }}"><br>
-    
-    <label for="entrevistado_data_nascimento">Data de Nascimento:</label>
-    <input type="date" name="entrevistado_data_nascimento" value="{{ entrevistado[4] }}" required><br>
-    
-    <label for="sexo">Sexo:</label>
-    <select name="sexo" required>
-        <option value="M" {% if entrevistado[5] == 'M' %}selected{% endif %}>M</option>
-        <option value="F" {% if entrevistado[5] == 'F' %}selected{% endif %}>F</option>
-    </select><br>
-    
-    <input type="submit" value="Salvar">
-</form>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição do Entrevistado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='editar_entrevistado.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back()">←</button>
+            <h1>Edição do Entrevistado: {{ entrevistado[1] }}</h1>
+        </div>
+
+        <form method="POST" class="edit-form">
+            <label for="entrevistado_nome">Nome:</label>
+            <input type="text" name="entrevistado_nome" value="{{ entrevistado[1] }}" required><br>
+            
+            <label for="entrevistado_email">Email:</label>
+            <input type="email" name="entrevistado_email" value="{{ entrevistado[2] }}" required><br>
+            
+            <label for="entrevistado_nome_social">Nome Social:</label>
+            <input type="text" name="entrevistado_nome_social" value="{{ entrevistado[3] }}"><br>
+            
+            <label for="entrevistado_data_nascimento">Data de Nascimento:</label>
+            <input type="date" name="entrevistado_data_nascimento" value="{{ entrevistado[4] }}" required><br>
+            
+            <label for="sexo">Sexo:</label>
+            <select name="sexo" required>
+                <option value="M" {% if entrevistado[5] == 'M' %}selected{% endif %}>M</option>
+                <option value="F" {% if entrevistado[5] == 'F' %}selected{% endif %}>F</option>
+            </select><br>
+            
+            <input type="submit" value="Salvar" class="save-button">
+        </form>
+    </div>
+</body>
+</html>

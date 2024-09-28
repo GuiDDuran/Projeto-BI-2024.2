@@ -1,51 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrevista</title>
+    <title>Cadastrar Entrevista</title>
 </head>
 <body>
-    <h1>{{ pesquisa_nome }} - Entrevistado: {{ entrevistado_nome }}</h1>
-    <h2>Pergunta {{ indice_pergunta + 1 }}: {{ pergunta_texto }}</h2>
+    <h1>Cadastrar Entrevista</h1>
+    <h2>Pesquisa: {{ pesquisa_nome }}</h2>
+    <h2>Entrevistado: {{ entrevistado_nome }}</h2>
 
-    <form method="POST" action="{{ url_for('entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=indice_pergunta+1) }}">
+    <p>Pergunta {{ indice_pergunta + 1 }} de {{ total_perguntas }}</p>
 
-        <!-- Se for uma pergunta de Escolha Única (tipo 1) -->
-        {% if tipo_pergunta_id == 1 %}
+    <form action="{{ url_for('salvar_respostas') }}" method="POST">
+        <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
+        <input type="hidden" name="entrevistado_id" value="{{ entrevistado_id }}">
+        <input type="hidden" name="indice_pergunta" value="{{ indice_pergunta }}">
+        <input type="hidden" name="pergunta_id" value="{{ pergunta_id }}">
+
+        <label>{{ pergunta_texto }}</label><br>
+
+        {% if pesquisa_pergunta_tipo_id == 1 %}  <!-- Resposta única -->
             {% for opcao in opcoes_resposta %}
                 <input type="radio" name="resposta" value="{{ opcao[0] }}"> {{ opcao[1] }}<br>
             {% endfor %}
-
-        <!-- Se for uma pergunta de Múltipla Escolha (tipo 2) -->
-        {% elif tipo_pergunta_id == 2 %}
+        {% elif pesquisa_pergunta_tipo_id == 2 %}  <!-- Múltipla escolha -->
             {% for opcao in opcoes_resposta %}
-                <input type="checkbox" name="resposta" value="{{ opcao[0] }}"> {{ opcao[1] }}<br>
+                <input type="checkbox" name="respostas" value="{{ opcao[0] }}"> {{ opcao[1] }}<br>
             {% endfor %}
-
-        <!-- Se for uma pergunta de Sim/Não (tipo 3) -->
-        {% elif tipo_pergunta_id == 3 %}
-            <input type="radio" name="resposta" value="sim"> Sim<br>
-            <input type="radio" name="resposta" value="nao"> Não<br>
-
-        <!-- Se for uma pergunta de Sim/Não/NI (tipo 4) -->
-        {% elif tipo_pergunta_id == 4 %}
-            <input type="radio" name="resposta" value="sim"> Sim<br>
-            <input type="radio" name="resposta" value="nao"> Não<br>
-            <input type="radio" name="resposta" value="ni"> Não se aplica<br>
-
-        <!-- Se for uma pergunta de Verdadeiro/Falso (tipo 5) -->
-        {% elif tipo_pergunta_id == 5 %}
-            <input type="radio" name="resposta" value="verdadeiro"> Verdadeiro<br>
-            <input type="radio" name="resposta" value="falso"> Falso<br>
-
-        <!-- Se for uma pergunta de Texto Livre (tipo 6) -->
-        {% elif tipo_pergunta_id == 6 %}
-            <textarea name="resposta" rows="5" cols="40"></textarea><br>
-
+        {% elif pesquisa_pergunta_tipo_id == 3 %}  <!-- Sim/Não -->
+            <input type="radio" name="resposta" value="Sim"> Sim<br>
+            <input type="radio" name="resposta" value="Não"> Não<br>
+        {% elif pesquisa_pergunta_tipo_id == 4 %}  <!-- Sim/Não/NI (Não informado) -->
+            <input type="radio" name="resposta" value="Sim"> Sim<br>
+            <input type="radio" name="resposta" value="Não"> Não<br>
+            <input type="radio" name="resposta" value="NI"> Não informado<br>
+        {% elif pesquisa_pergunta_tipo_id == 5 %}  <!-- Verdadeiro/Falso -->
+            <input type="radio" name="resposta" value="Verdadeiro"> Verdadeiro<br>
+            <input type="radio" name="resposta" value="Falso"> Falso<br>
+        {% elif pesquisa_pergunta_tipo_id == 6 %}  <!-- Resposta aberta -->
+            <textarea name="resposta"></textarea>
         {% endif %}
 
-        <button type="submit">Próxima</button>
+        <!-- <div>
+            {% if indice_pergunta > 0 %}
+                <button type="submit" formaction="{{ url_for('cadastrar_entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=indice_pergunta - 1) }}">Pergunta Anterior</button>
+            {% endif %}
+            <button type="submit" formaction="{{ url_for('cadastrar_entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=indice_pergunta + 1) }}">Próxima Pergunta</button>
+        </div> -->
+        <button type="submit">Salvar Respostas</button>
     </form>
 </body>
 </html>

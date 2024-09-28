@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
+import time
 
 app = Flask(__name__)
 
 # Função para conectar ao banco de dados PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname='postgres',
+        dbname='dw_projetoilhaprimeira',
         user='postgres',
-        password='123',
+        password='admin',
         host='localhost',
         port='5432'
     )
@@ -323,9 +324,7 @@ def salvar_endereco():
 def cadastrar_entrevista():
     pesquisa_id = request.args.get('pesquisa_id')
     entrevistado_id = request.args.get('entrevistado_id')
-    print(f"pesquisa_id: {pesquisa_id}, entrevistado_id: {entrevistado_id}")
-
-
+    indice_pergunta = int(request.args.get('indice_pergunta', 0))
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -344,37 +343,85 @@ def cadastrar_entrevista():
     pesquisa_nome = pesquisa_info[0]
     entrevistado_nome = entrevistado_info[0]
 
+    # Buscar o número total de perguntas da pesquisa
+    cur.execute("SELECT COUNT(*) FROM pesquisa_pergunta WHERE pesquisa_id = %s", (pesquisa_id,))
+    total_perguntas = cur.fetchone()[0]
+
     # Buscar a pergunta atual com base no índice, incluindo o tipo da pergunta
     cur.execute("""
-        SELECT pp.pergunta_id, pp.pergunta_texto, ppt.pesquisa_pergunta_tipo_id
-        FROM pergunta pp
+        SELECT pp.pesquisa_pergunta_id, pp.pergunta_texto, ppt.pesquisa_pergunta_tipo_id
+        FROM pesquisa_pergunta pp
         JOIN pesquisa_pergunta_tipo ppt ON pp.pesquisa_pergunta_tipo_id = ppt.pesquisa_pergunta_tipo_id
         WHERE pp.pesquisa_id = %s
-        ORDER BY pp.pergunta_id
+        ORDER BY pp.pesquisa_pergunta_id
         LIMIT 1 OFFSET %s
     """, (pesquisa_id, indice_pergunta))
     pergunta_info = cur.fetchone()
 
     if pergunta_info is None:
-        return "Não há mais perguntas.", 200
+        return render_template('finalizar_entrevista.html'), 200
 
-    pergunta_id, pergunta_texto, tipo_pergunta_id = pergunta_info
+    pergunta_id, pergunta_texto, pesquisa_pergunta_tipo_id = pergunta_info
 
     # Buscar as opções de resposta, caso a pergunta tenha (para escolha única e múltipla escolha)
-    cur.execute("SELECT opcao_id, opcao_texto FROM opcao_resposta WHERE pergunta_id = %s", (pergunta_id,))
+    cur.execute("SELECT pesquisa_pergunta_opcao_id, opcao FROM pesquisa_pergunta_opcao WHERE pesquisa_pergunta_id = %s", (pergunta_id,))
     opcoes_resposta = cur.fetchall()
 
+    cur.close()
     conn.close()
-
+    print(f"pergunta_id: {pergunta_id} veio??") # veio mas n passa como parametro
     return render_template('cadastrar_entrevista.html',
                            pesquisa_nome=pesquisa_nome,
                            entrevistado_nome=entrevistado_nome,
                            pergunta_texto=pergunta_texto,
-                           tipo_pergunta_id=tipo_pergunta_id,
+                           pesquisa_pergunta_tipo_id=pesquisa_pergunta_tipo_id,
                            opcoes_resposta=opcoes_resposta,
                            indice_pergunta=indice_pergunta,
+                           total_perguntas=total_perguntas,
+                           pergunta_id=pergunta_id,
                            pesquisa_id=pesquisa_id,
                            entrevistado_id=entrevistado_id)
+
+# Rota para salvar uma entrevista
+@app.route('/salvar_respostas', methods=['POST'])
+def salvar_respostas():
+    pesquisa_id = request.form.get('pesquisa_id')
+    entrevistado_id = request.form.get('entrevistado_id')
+    pergunta_id = request.form.get('pergunta_id')
+    print(f"pergunta_id: {pergunta_id} aqui") #não chega
+    resposta = request.form.get('resposta')  # Para respostas únicas
+    respostas_multipla = request.form.getlist('respostas')  # Para múltipla escolha
+    indice_pergunta = request.form.get('indice_pergunta')
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Se a resposta for nula ou múltipla escolha for vazia, insira uma resposta vazia
+    if not resposta and not respostas_multipla:
+        cur.execute("""
+            INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
+            VALUES (%s, %s, '')
+        """, (entrevistado_id, pergunta_id))
+
+    # Salve a resposta no banco de dados
+    if resposta:
+        cur.execute("""
+            INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
+            VALUES (%s, %s, %s)
+        """, (entrevistado_id, pergunta_id, resposta))
+    elif respostas_multipla:
+        for resp in respostas_multipla:
+            cur.execute("""
+                INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
+                VALUES (%s, %s, %s)
+            """, (entrevistado_id, pergunta_id, resp))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    # Redirecionar para a próxima pergunta
+    return redirect(url_for('cadastrar_entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=int(indice_pergunta) + 1))
 
 
 if __name__ == '__main__':

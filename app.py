@@ -423,6 +423,105 @@ def salvar_respostas():
     # Redirecionar para a próxima pergunta
     return redirect(url_for('cadastrar_entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, indice_pergunta=int(indice_pergunta) + 1))
 
+@app.route('/gerenciar_pesquisa', methods=['GET'])
+def gerenciar_pesquisas():
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Seleciona todas as pesquisas do banco
+    cur.execute("SELECT pesquisa_id, pesquisa_nome FROM pesquisa")
+    pesquisas = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    # Renderiza o template com as pesquisas
+    return render_template('gerenciar_pesquisa.html', pesquisas=pesquisas)
+
+# Rota para cadastrar uma nova pesquisa
+@app.route('/cadastrar_pesquisa', methods=['GET', 'POST'])
+def cadastrar_pesquisa():
+    if request.method == 'POST':
+        # Processa os dados enviados pelo formulário
+        nome_pesquisa = request.form.get('nome_pesquisa')
+        data_inicio = request.form.get('data_inicio')
+        data_fim = request.form.get('data_fim')
+
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        # Inserir a nova pesquisa no banco de dados
+        cur.execute("""
+            INSERT INTO pesquisa (pesquisa_nome, data_inicio, data_fim)
+            VALUES (%s, %s, %s)
+            RETURNING pesquisa_id
+        """, (nome_pesquisa, data_inicio, data_fim))
+
+        pesquisa_id = cur.fetchone()[0]
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        # Redirecionar para a página de listar perguntas
+        return redirect(url_for('listar_perguntas', pesquisa_id=pesquisa_id))
+
+    # Exibir o formulário de cadastro se for uma requisição GET
+    return render_template('cadastrar_pesquisa.html')
+
+# Rota para listar as perguntas de uma pesquisa
+@app.route('/listar_perguntas/<int:pesquisa_id>', methods=['GET'])
+def listar_perguntas(pesquisa_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Buscar perguntas associadas a essa pesquisa
+    cur.execute("""
+        SELECT pesquisa_pergunta_id, pergunta_texto 
+        FROM pesquisa_pergunta 
+        WHERE pesquisa_id = %s
+    """, (pesquisa_id,))
+    perguntas = cur.fetchall()
+
+    # Buscar o nome da pesquisa
+    cur.execute("""
+        SELECT pesquisa_nome 
+        FROM pesquisa 
+        WHERE pesquisa_id = %s
+    """, (pesquisa_id,))
+    nome_pesquisa = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    # Renderizar o template com as perguntas e o pesquisa_id
+    return render_template('listar_perguntas.html', perguntas=perguntas, pesquisa_id=pesquisa_id, nome_pesquisa=nome_pesquisa[0])
+
+# Rota para cadastrar uma nova pergunta
+@app.route('/cadastrar_pergunta/<int:pesquisa_id>', methods=['GET', 'POST'])
+def cadastrar_pergunta(pesquisa_id):
+    if request.method == 'POST':
+        # Processa os dados enviados pelo formulário
+        pergunta_texto = request.form.get('pergunta_texto')
+
+        conn = get_db_connection()
+        cur = conn.cursor()
+
+        # Inserir a nova pergunta no banco de dados
+        cur.execute("""
+            INSERT INTO pesquisa_pergunta (pesquisa_id, pergunta_texto)
+            VALUES (%s, %s)
+        """, (pesquisa_id, pergunta_texto))
+
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        # Redirecionar para a página de listar perguntas
+        return redirect(url_for('listar_perguntas', pesquisa_id=pesquisa_id))
+
+    # Exibir o formulário de cadastro se for uma requisição GET
+    return render_template('cadastrar_pergunta.html', pesquisa_id=pesquisa_id)
 
 if __name__ == '__main__':
     app.run(debug=True)

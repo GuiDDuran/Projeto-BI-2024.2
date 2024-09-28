@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Perguntas</title>
+</head>
+<body>
+    <h1>Perguntas da Pesquisa: {{ nome_pesquisa }}</h1>
+    <table>
+        <tr>
+            <th>ID da Pergunta</th>
+            <th>Nome da Pergunta</th>
+            <th>Ações</th>
+        </tr>
+        {% if perguntas %}
+            {% for pergunta in perguntas %}
+            <tr>
+                <td>{{ pergunta[0] }}</td>
+                <td>{{ pergunta[1] }}</td>
+                <td>
+                    <a href="#">Editar</a> | 
+                    <a href="#">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3">Nenhuma pergunta encontrada.</td>
+            </tr>
+        {% endif %}
+    </table>
+    
+    <br>
+    <!-- Botão para adicionar nova pergunta -->
+    <form action="{{ url_for('cadastrar_pergunta', pesquisa_id=pesquisa_id) }}" method="GET">
+        <button type="submit">Adicionar Nova Pergunta</button>
+    </form>
+</body>
+</html>

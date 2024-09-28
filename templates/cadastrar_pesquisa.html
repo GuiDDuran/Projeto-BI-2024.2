@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Nova Pesquisa</title>
+</head>
+<body>
+    <h1>Cadastrar Nova Pesquisa</h1>
+    <form action="{{ url_for('cadastrar_pesquisa') }}" method="POST">
+        <label for="nome_pesquisa">Nome da Pesquisa:</label>
+        <input type="text" id="nome_pesquisa" name="nome_pesquisa" required><br><br>
+
+        <label for="data_inicio">Data de Início:</label>
+        <input type="date" id="data_inicio" name="data_inicio" required><br><br>
+
+        <label for="data_fim">Data de Fim:</label>
+        <input type="date" id="data_fim" name="data_fim" required><br><br>
+
+        <button type="submit">Cadastrar Pesquisa</button>
+    </form>
+</body>
+</html>

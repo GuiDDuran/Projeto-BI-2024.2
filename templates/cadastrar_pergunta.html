@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Pergunta</title>
+</head>
+<body>
+    <h1>Cadastrar Nova Pergunta</h1>
+    <form action="{{ url_for('cadastrar_pergunta', pesquisa_id=pesquisa_id) }}" method="POST">
+        <label for="pergunta_texto">Texto da Pergunta:</label>
+        <input type="text" name="pergunta_texto" id="pergunta_texto" required>
+        <button type="submit">Cadastrar Pergunta</button>
+    </form>
+</body>
+</html>

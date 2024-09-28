@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Pesquisas</title>
+</head>
+<body>
+    <h1>Pesquisas Cadastradas</h1>
+    <table>
+        <tr>
+            <th>ID da Pesquisa</th>
+            <th>Nome da Pesquisa</th>
+            <th>Ações</th>
+        </tr>
+        {% for pesquisa in pesquisas %}
+        <tr>
+            <td>{{ pesquisa[0] }}</td>
+            <td>{{ pesquisa[1] }}</td>
+            <td>
+                <!-- Link de Editar -->
+                <a href="#">Editar</a> 
+                <!-- Link de Excluir -->
+                <a href="#">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Botão de Cadastrar -->
+    <div>
+        <form action="{{ url_for('cadastrar_pesquisa') }}" method="GET">
+            <button type="submit">Cadastrar Nova Pesquisa</button>
+        </form>
+    </div>
+</body>
+</html>

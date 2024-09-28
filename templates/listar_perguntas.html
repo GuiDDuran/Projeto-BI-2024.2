@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='listar_perguntas.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="page-container">
         <div class="header">
             <button class="back-button" onclick="window.location.href='/gerenciar_pesquisa'">←</button>
             <h1>Perguntas da Pesquisa</h1>
@@ -29,7 +29,7 @@
                     <td>{{ pergunta[0] }}</td>
                     <td>{{ pergunta[1] }}</td>
                     <td>
-                        <a class="action-button" href="#">Editar</a> | 
+                        <a class="action-button" href="#">Editar</a> |
                         <a class="action-button" href="#">Excluir</a>
                     </td>
                 </tr>
@@ -42,6 +42,7 @@
 
         <div>
             <form action="{{ url_for('cadastrar_pergunta') }}" method="GET">
+                <input type="hidden" name="pesquisa_id" value="{{ pesquisa_id }}">
                 <button type="submit" class="cadastrar-button">Cadastrar Nova Pergunta</button>
             </form>
         </div>

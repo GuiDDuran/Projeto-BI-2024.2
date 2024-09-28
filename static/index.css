@@ -1,44 +1,70 @@
-/* Centralizando o conteúdo da página */
+/* Estilos Gerais */
 body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-}
+    background-color: #f4f4f9; /* Cor suave para o fundo */
+  }
 
-/* Container principal */
-.container {
+  /* Container principal */
+  .container {
+    width: 100%;
+    max-width: 430px; /* Largura aproximada para iPhone 14 Pro Max */
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
+  }
 
-/* Estilização do título */
-h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin-bottom: 40px;
-}
+  /* Título */
+  h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
 
-/* Container para os botões */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* Estilização dos botões */
-button {
-    padding: 15px 30px;
-    background-color: #2e8b57; /* Cor verde escura */
+  /* Botões */
+  button {
+    width: 80%;
+    max-width: 250px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    font-size: 1.2rem;
     color: white;
+    background-color: #28a745; /* Verde moderno */
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 10px;
     cursor: pointer;
-}
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
 
-button:hover {
-    background-color: #3cb371; /* Cor verde mais clara ao passar o mouse */
-}
+  button:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+  }
+
+  button:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+  }
+
+  /* Responsividade */
+  @media only screen and (max-width: 430px) {
+    .container {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    button {
+      font-size: 1.1rem;
+    }
+  }

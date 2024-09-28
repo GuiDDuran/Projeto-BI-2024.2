@@ -1,15 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 import psycopg2
-import time
+import time #função foi passada para o javascript
 
 app = Flask(__name__)
 
 # Função para conectar ao banco de dados PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname='dw_projetoilhaprimeira',
+        dbname='postgres',
         user='postgres',
-        password='admin',
+        password='123',
         host='localhost',
         port='5432'
     )
@@ -477,16 +477,16 @@ def listar_perguntas(pesquisa_id):
 
     # Buscar perguntas associadas a essa pesquisa
     cur.execute("""
-        SELECT pesquisa_pergunta_id, pergunta_texto 
-        FROM pesquisa_pergunta 
+        SELECT pesquisa_pergunta_id, pergunta_texto
+        FROM pesquisa_pergunta
         WHERE pesquisa_id = %s
     """, (pesquisa_id,))
     perguntas = cur.fetchall()
 
     # Buscar o nome da pesquisa
     cur.execute("""
-        SELECT pesquisa_nome 
-        FROM pesquisa 
+        SELECT pesquisa_nome
+        FROM pesquisa
         WHERE pesquisa_id = %s
     """, (pesquisa_id,))
     nome_pesquisa = cur.fetchone()
@@ -503,7 +503,7 @@ def cadastrar_pergunta():
     if request.method == 'POST':
         # Pegue os dados enviados pelo formulário
         pesquisa_id = request.form.get('pesquisa_id')  # ID da pesquisa
-        print(f"pesquisa_id: {pesquisa_id} aqui") # Não está recebendo
+        print(f"pesquisa_id: {pesquisa_id} olha aqui") # funcionando
         pergunta_texto = request.form.get('pergunta_texto')  # Texto da pergunta
         pesquisa_pergunta_tipo_id = request.form.get('pesquisa_pergunta_tipo')  # Tipo da pergunta
         opcoes_resposta = request.form.getlist('opcao_resposta[]')  # Lista de opções de resposta
@@ -524,7 +524,7 @@ def cadastrar_pergunta():
             INSERT INTO pesquisa_pergunta (pergunta_texto, pesquisa_id, pesquisa_pergunta_tipo_id)
             VALUES (%s, %s, %s) RETURNING pesquisa_pergunta_id
         """, (pergunta_texto, int(pesquisa_id), int(pesquisa_pergunta_tipo_id)))
-        
+
         pergunta_id = cur.fetchone()[0]  # Pega o ID da pergunta recém-criada
 
         # Se o tipo da pergunta for "escolha única" ou "múltipla escolha", insere as opções
@@ -532,7 +532,7 @@ def cadastrar_pergunta():
             for opcao in opcoes_resposta:
                 if opcao:  # Verifica se a opção não está vazia
                     cur.execute("""
-                        INSERT INTO pesquisa_pergunta_opcao (pergunta_id, opcao_texto)
+                        INSERT INTO pesquisa_pergunta_opcao (pesquisa_pergunta_id, opcao)
                         VALUES (%s, %s)
                     """, (pergunta_id, opcao))
 
@@ -546,7 +546,17 @@ def cadastrar_pergunta():
 
     # Se for um GET, exibe o formulário de cadastro de pergunta
     pesquisa_id = request.args.get('pesquisa_id')  # Obtém o ID da pesquisa
-    pesquisa_nome = ...  # Pega o nome da pesquisa a partir do banco (você deve implementar isso)
+
+    # Busca os tipos de pergunta disponíveis
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT pesquisa_nome FROM pesquisa WHERE pesquisa_id = %s
+    """, (pesquisa_id,))
+    pesquisa_nome = cur.fetchone()
+
+    cur.close()
+    conn.close()
 
     # Busca os tipos de pergunta disponíveis
     conn = get_db_connection()
@@ -556,6 +566,9 @@ def cadastrar_pergunta():
 
     cur.close()
     conn.close()
+
+    if pesquisa_nome:
+        pesquisa_nome = pesquisa_nome[0]  # Extrair o nome da pesquisa
 
     # Renderiza o template para cadastrar pergunta
     return render_template('cadastrar_pergunta.html', pesquisa_nome=pesquisa_nome, pesquisa_id=pesquisa_id, tipos_pergunta=tipos_pergunta)

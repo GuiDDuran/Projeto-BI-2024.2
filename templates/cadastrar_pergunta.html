@@ -12,7 +12,7 @@
             <button class="back-button" onclick="window.location.href='/listar_perguntas/{{ pesquisa_id }}'">←</button>
             <h1>Cadastro de Pergunta</h1>
         </div>
-        
+
         <h2 class="nome-pesquisa">Pesquisa: {{ pesquisa_nome }}</h2>
 
         <!-- Formulário para cadastrar pergunta -->
@@ -64,15 +64,34 @@
 
             // Limitar a 5 opções
             if (numOpcoes < 5) {
+                // Criar o input para a nova opção
                 var novaOpcao = document.createElement('input');
                 novaOpcao.type = 'text';
                 novaOpcao.name = 'opcao_resposta[]';
                 novaOpcao.placeholder = 'Opção ' + (numOpcoes + 1);
-                novaOpcao.style.marginBottom = '20px'; // Espaço entre as opções
+                novaOpcao.style.marginBottom = '10px';
+
+                // Criar o botão de remoção
+                var removerButton = document.createElement('button');
+                removerButton.type = 'button';
+                removerButton.innerText = 'Remover';
+                removerButton.style.marginLeft = '10px';
+                removerButton.onclick = function() {
+                    container.removeChild(novaOpcao);
+                    container.removeChild(removerButton);
+                    container.removeChild(br);
+                };
+
+                // Adicionar um quebra de linha para separar as opções
+                var br = document.createElement('br');
+
+                // Adicionar o input, botão e quebra de linha ao container
                 container.appendChild(novaOpcao);
-                container.appendChild(document.createElement('br')); // Espaço adicional
+                container.appendChild(removerButton);
+                container.appendChild(br);
             }
         }
+
     </script>
 </body>
 </html>

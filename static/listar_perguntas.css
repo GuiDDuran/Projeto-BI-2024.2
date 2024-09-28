@@ -10,11 +10,17 @@ body {
 }
 
 /* Container principal */
-.container {
+.page-container {
+    border: 1px solid #000000; /* Borda fina e cinza */
+    padding: 20px; /* Espaçamento interno */
+    margin: 20px; /* Espaçamento externo para afastar do limite da página */
+    border-radius: 5px; /* Bordas levemente arredondadas */
+    text-align: center;
     width: 80%;
     max-width: 800px; /* Ajustar a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+
 }
 
 /* Estilização do cabeçalho */

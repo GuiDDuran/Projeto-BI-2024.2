@@ -6,9 +6,9 @@ app = Flask(__name__)
 # Função para conectar ao banco de dados PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname='dw_projetoilhaprimeira',
+        dbname='postgres',
         user='postgres',
-        password='admin',
+        password='123',
         host='localhost',
         port='5432'
     )
@@ -48,34 +48,34 @@ def gerenciar_entrevistado():
 def informacao_entrevistado(entrevistado_id):
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     # Seleciona as informações do entrevistado com base no ID
     cur.execute("""
-        SELECT 
-            entrevistado_nome, 
-            entrevistado_email, 
-            sexo, 
-            entrevistado_data_nascimento, 
-            genero.genero 
-        FROM 
-            entrevistado 
-        JOIN 
+        SELECT
+            entrevistado_nome,
+            entrevistado_email,
+            sexo,
+            entrevistado_data_nascimento,
+            genero.genero
+        FROM
+            entrevistado
+        JOIN
             genero ON entrevistado.genero_id = genero.genero_id
-        WHERE 
+        WHERE
             entrevistado_id = %s
     """, (entrevistado_id,))
-    
+
     entrevistado_info = cur.fetchone()
-    
+
     cur.close()
     conn.close()
-    
+
     # Verifica se o entrevistado foi encontrado
     if entrevistado_info is None:
         return "Entrevistado não encontrado.", 404
-    
+
     return render_template(
-        'informacao_entrevistado.html', 
+        'informacao_entrevistado.html',
         entrevistado=entrevistado_info,
         entrevistado_id=entrevistado_id
     )
@@ -85,46 +85,46 @@ def informacao_entrevistado(entrevistado_id):
 def respostas_entrevistado(entrevistado_id):
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     # Obter informações do entrevistado
     cur.execute("SELECT entrevistado_nome FROM entrevistado WHERE entrevistado_id = %s", (entrevistado_id,))
     entrevistado_info = cur.fetchone()
-    
+
     # Obter informações da pesquisa e perguntas/respostas
     cur.execute("""
-        SELECT 
+        SELECT
             pesquisa.pesquisa_nome,
             pesquisa_pergunta.pesquisa_pergunta_id,
             pesquisa_pergunta.pergunta_texto,
             pergunta_resposta.resposta
-        FROM 
-            pesquisa 
-        JOIN 
+        FROM
+            pesquisa
+        JOIN
             pesquisa_pergunta ON pesquisa.pesquisa_id = pesquisa_pergunta.pesquisa_id
-        JOIN 
+        JOIN
             pergunta_resposta ON pesquisa_pergunta.pesquisa_pergunta_id = pergunta_resposta.pesquisa_pergunta_id
-        WHERE 
+        WHERE
             pergunta_resposta.entrevistado_id = %s
     """, (entrevistado_id,))
-    
+
     perguntas_respostas = cur.fetchall()
-    
+
     cur.close()
     conn.close()
-    
+
     # Verifica se o entrevistado foi encontrado
     if entrevistado_info is None:
         return "Entrevistado não encontrado.", 404
-    
+
     # Verifica se há perguntas e respostas
     if not perguntas_respostas:
         return "Nenhuma resposta encontrada para este entrevistado.", 404
-    
+
     # Coleta o nome da pesquisa
     pesquisa_nome = perguntas_respostas[0][0] if perguntas_respostas else None
 
     return render_template(
-        'respostas_entrevistado.html', 
+        'respostas_entrevistado.html',
         entrevistado_nome=entrevistado_info[0],
         pesquisa_nome=pesquisa_nome,
         perguntas_respostas=perguntas_respostas
@@ -135,7 +135,7 @@ def respostas_entrevistado(entrevistado_id):
 def editar_entrevistado(entrevistado_id):
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     if request.method == 'POST':
         # Captura os dados do formulário
         nome = request.form['entrevistado_nome']
@@ -143,35 +143,35 @@ def editar_entrevistado(entrevistado_id):
         nome_social = request.form['entrevistado_nome_social']
         data_nascimento = request.form['entrevistado_data_nascimento']
         sexo = request.form['sexo']
-        
+
         # Atualiza o entrevistado no banco de dados
         cur.execute("""
-            UPDATE entrevistado 
-            SET entrevistado_nome = %s, 
-                entrevistado_email = %s, 
+            UPDATE entrevistado
+            SET entrevistado_nome = %s,
+                entrevistado_email = %s,
                 entrevistado_nome_social = %s,
                 entrevistado_data_nascimento = %s,
-                sexo = %s 
+                sexo = %s
             WHERE entrevistado_id = %s
         """, (nome, email, nome_social, data_nascimento, sexo, entrevistado_id))
-        
+
         conn.commit()  # Certifique-se de que as mudanças estão sendo salvas
         cur.close()
         conn.close()
-        
+
         # Redireciona para a página de gerenciamento
         return redirect(url_for('gerenciar_entrevistado'))
-    
+
     # Seleciona as informações do entrevistado
     cur.execute("SELECT * FROM entrevistado WHERE entrevistado_id = %s", (entrevistado_id,))
     entrevistado_info = cur.fetchone()
-    
+
     cur.close()
     conn.close()
-    
+
     if entrevistado_info is None:
         return "Entrevistado não encontrado.", 404
-    
+
     return render_template('editar_entrevistado.html', entrevistado=entrevistado_info)
 
 # Rota para listar as pesquisas
@@ -179,7 +179,7 @@ def editar_entrevistado(entrevistado_id):
 def listar_pesquisa():
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     # Seleciona as pesquisas ativas
     cur.execute("SELECT pesquisa_id, pesquisa_nome FROM pesquisa WHERE ativo = TRUE")
     pesquisas = cur.fetchall()
@@ -194,6 +194,8 @@ def listar_pesquisa():
 def cadastrar_entrevistado():
     if request.method == 'POST':
         pesquisa_id = request.form.get('pesquisa_id')
+        print(f"pesquisa_id: {pesquisa_id}") #recebido com sucesso id=1
+
 
         conn = get_db_connection()
         cur = conn.cursor()
@@ -257,6 +259,7 @@ def salvar_entrevistado():
 @app.route('/cadastrar_endereco', methods=['GET'])
 def cadastrar_endereco():
     pesquisa_id = request.args.get('pesquisa_id')
+    print(f"pesquisa_id: {pesquisa_id} oi") # id com valor 1 recebido com sucesso
     entrevistado_id = request.args.get('entrevistado_id')
 
     conn = get_db_connection()
@@ -281,7 +284,7 @@ def cadastrar_endereco():
     entrevistado_nome = entrevistado_info[0]
 
     # Passar as variáveis `pesquisa_nome` e `entrevistado_nome` para o template
-    return render_template('cadastrar_endereco.html', pesquisa_nome=pesquisa_nome, entrevistado_nome=entrevistado_nome, entrevistado_id=entrevistado_id)
+    return render_template('cadastrar_endereco.html', pesquisa_nome=pesquisa_nome, entrevistado_nome=entrevistado_nome, pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id) #ERRO TAVA AQUI NÃO PASAVA PESQUISA_ID NO RENDER PARA O HTMLHTML RECEBIA NULL
 
 # Rota para salvar um endereço
 @app.route('/salvar_endereco', methods=['POST'])
@@ -296,8 +299,7 @@ def salvar_endereco():
     uf = request.form.get('uf')
     descricao = request.form.get('descricao')
     pesquisa_id = request.form.get('pesquisa_id')  # Certifique-se de obter o ID da pesquisa aqui
-
-    print(f"Entrevistado ID: {entrevistado_id}, Pesquisa ID: {pesquisa_id}")
+    print(f"Pesquisa ID: {pesquisa_id} tá vindo??") # O ID NÃO ESTÁ CHEGANDO AQUI!!
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -313,7 +315,6 @@ def salvar_endereco():
     conn.close()
 
     # Redirecionar para a nova rota cadastrar_entrevista
-    print(f"pesquisa_id: {pesquisa_id}, entrevistado_id: {entrevistado_id}")
 
     return redirect(url_for('cadastrar_entrevista', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id))
 

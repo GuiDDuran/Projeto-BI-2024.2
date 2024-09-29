@@ -5,8 +5,8 @@ body {
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color, #f4f4f9); /* Variável de cor de fundo para fácil alteração */
 }
 
 /* Container principal */
@@ -15,13 +15,18 @@ body {
     max-width: 800px; /* Ajustar a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+    padding: var(--container-padding, 20px); /* Padding personalizável */
+    background-color: var(--container-bg-color, white); /* Cor de fundo do container personalizável */
+    box-shadow: var(--container-shadow, 0 4px 8px rgba(0, 0, 0, 0.1)); /* Sombra com variável */
+    border-radius: var(--container-border-radius, 8px); /* Borda arredondada customizável */
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin-bottom: 20px; /* Reduzir espaço abaixo do título */
+    font-size: var(--title-font-size, 2.5em); /* Tamanho do título personalizável */
+    color: var(--title-color, #2c3e50); /* Cor do título com variável */
+    margin-bottom: var(--title-margin-bottom, 20px); /* Espaço abaixo do título */
+    font-weight: var(--title-font-weight, bold); /* Peso da fonte ajustável */
 }
 
 /* Estilização do cabeçalho */
@@ -29,40 +34,58 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--header-gap, 15px); /* Controle de espaçamento entre elementos do cabeçalho */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    font-size: 1.5em;
-    margin-right: 15px;
-    background: none;
-    border: none;
+    font-size: var(--back-button-font-size, 1.5em);
+    background: var(--back-button-bg, none);
+    border: var(--back-button-border, none);
     cursor: pointer;
+    color: var(--back-button-color, inherit); /* Herdar ou definir cor */
+    transition: color 0.3s ease; /* Transição suave para hover */
+}
+
+.back-button:hover {
+    color: var(--back-button-hover-color, #2c3e50); /* Efeito de hover personalizável */
 }
 
 /* Estilização do formulário de cadastro */
 .form-cadastro {
-    margin-top: 20px;
+    margin-top: var(--form-margin-top, 20px); /* Espaçamento superior customizável */
 }
 
 /* Labels e Inputs */
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: var(--label-margin-top, 10px); /* Espaçamento ajustável para o label */
+    font-weight: var(--label-font-weight, normal); /* Peso da fonte personalizável */
+}
+
+/* Inputs */
+input, select, textarea {
+    width: 100%;
+    padding: var(--input-padding, 10px); /* Padding customizável */
+    margin-top: var(--input-margin-top, 5px); /* Margem acima do input */
+    border: var(--input-border, 1px solid #ccc); /* Borda personalizável */
+    border-radius: var(--input-border-radius, 5px); /* Borda arredondada ajustável */
+    box-sizing: border-box;
 }
 
 /* Botão de submissão */
 .submit-button {
-    padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: var(--button-padding, 10px 20px); /* Padding ajustável */
+    background-color: var(--button-bg-color, #2e8b57); /* Cor do botão */
+    color: var(--button-text-color, white); /* Cor do texto do botão */
+    border: var(--button-border, none);
+    border-radius: var(--button-border-radius, 5px); /* Borda arredondada */
+    font-size: var(--button-font-size, 16px);
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: var(--button-margin-top, 20px);
+    transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--button-hover-bg-color, #3cb371); /* Cor de hover do botão */
 }

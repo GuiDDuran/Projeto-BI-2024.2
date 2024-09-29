@@ -1,20 +1,37 @@
+/* Variáveis de cor */
+:root {
+    --background-color: #f4f4f9;
+    --primary-color: #2e8b57; /* Verde escuro */
+    --primary-light: #3cb371; /* Verde mais claro */
+    --text-color: #2c3e50;
+    --border-color: #d1d5db; /* Borda leve */
+    --table-header-bg: #2e8b57; /* Verde escuro para cabeçalho da tabela */
+    --table-row-even-bg: #f3f3f3;
+    --table-row-hover-bg: #e9e9e9;
+}
+
 /* Centralizando o conteúdo da página */
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    align-items: flex-start; /* Alinhamento ao topo */
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--background-color); /* Usando variável de cor */
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
-    width: 80%;
-    max-width: 800px; /* Ajustar a largura máxima */
+    width: 100%; /* Largura total para dispositivos móveis */
+    max-width: 800px; /* Largura máxima ajustada */
     text-align: center;
-    margin: 20px auto; /* Margem para não colar na borda superior */
+    margin: 20px auto; /* Espaçamento superior */
+    padding: 20px; /* Adiciona padding interno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco para o container */
 }
 
 /* Estilização do cabeçalho */
@@ -27,38 +44,40 @@ body {
 
 /* Estilização do título da página */
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
+    font-size: 2em; /* Tamanho de fonte reduzido para melhor visualização em dispositivos móveis */
+    color: var(--text-color); /* Usando variável de cor */
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
 }
 
 .back-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }
 
 /* Estilização da tabela */
 .styled-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
-    font-size: 16px;
+    font-size: 14px; /* Tamanho de fonte reduzido para melhor visualização em dispositivos móveis */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; /* Bordas arredondadas da tabela */
+    overflow: hidden; /* Para aplicar o arredondamento */
 }
 
 /* Cabeçalho da tabela */
 .styled-table thead tr {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--table-header-bg); /* Usando variável de cor */
     color: #ffffff;
     text-align: center;
 }
@@ -68,48 +87,56 @@ h1 {
 .styled-table td {
     padding: 12px 15px;
     text-align: center;
+    border: 1px solid var(--border-color); /* Usando variável de cor */
 }
 
 /* Alternar cor das linhas */
 .styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: var(--table-row-even-bg); /* Usando variável de cor */
 }
 
 /* Linhas ao passar o mouse */
 .styled-table tbody tr:hover {
-    background-color: #e9e9e9;
+    background-color: var(--table-row-hover-bg); /* Usando variável de cor */
 }
 
-/* Estilização do botão de ação na coluna de ações */
+/* Estilização do botão de ação */
 .action-button {
-    background-color: transparent; /* Remove o fundo */
-    color: #2e8b57; /* Cor do texto verde escuro */
-    border: none; /* Remove a borda */
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none; /* Remove sublinhado padrão de links */
-    font-weight: bold; /* Deixa o texto em negrito */
-    margin: 0 5px; /* Adiciona espaço entre os links */
-}
-
-/* Estilização ao passar o mouse */
-.action-button:hover {
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
-    color: #3cb371; /* Verde mais claro ao passar o mouse */
-}
-
-/* Estilização do botão de cadastrar */
-.cadastrar-button {
     padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
+    margin: 10px 0; /* Espaço acima e abaixo do botão */
+    outline: none; /* Remove a linha de contorno */
+}
+
+.action-button:hover {
+    background-color: var(--primary-light); /* Usando variável de cor */
+}
+
+
+/* Estilização do botão de cadastrar nova pesquisa */
+.cadastrar-button {
+    padding: 12px 25px;
+    background-color: var(--primary-color); /* Verde escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Tamanho de fonte maior */
     margin-top: 20px; /* Espaço acima do botão de cadastrar */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
 }
 
 .cadastrar-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Verde mais claro */
+    transform: translateY(-2px); /* Efeito de elevação no hover */
+}
+
+.cadastrar-button:active {
+    transform: translateY(1px); /* Efeito de clique */
 }

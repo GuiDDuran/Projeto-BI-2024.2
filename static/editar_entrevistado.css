@@ -1,20 +1,25 @@
-/* Centralizando o conteúdo da página */
+/* Centralizando o conteúdo da página */ 
 body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
-    height: 100vh;
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
-    width: 80%;
+    width: 90%; /* Aumenta a largura para melhor uso do espaço em dispositivos móveis */
     max-width: 800px; /* Ajustar a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #d1d5db; /* Borda leve */
+    border-radius: 8px; /* Bordas levemente arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para destaque */
 }
 
 /* Estilização do cabeçalho */
@@ -27,7 +32,7 @@ body {
 
 /* Estilização do título da página */
 h1 {
-    font-size: 2.5em;
+    font-size: 2.2em; /* Reduz o tamanho do título para melhor responsividade */
     color: #2c3e50;
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
@@ -41,6 +46,8 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 15px; /* Espaço abaixo do botão */
+    transition: background-color 0.3s; /* Transição suave */
 }
 
 .back-button:hover {
@@ -52,12 +59,14 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centraliza os itens do formulário */
+    width: 100%; /* Faz o formulário ocupar toda a largura do container */
 }
 
 /* Estilização dos campos do formulário */
 label {
     margin-top: 10px; /* Espaço acima de cada label */
     color: #2c3e50; /* Cor do texto */
+    font-weight: bold; /* Destaca o texto do label */
 }
 
 input[type="text"],
@@ -65,10 +74,22 @@ input[type="email"],
 input[type="date"],
 select {
     padding: 10px;
-    width: 300px;
+    width: 100%; /* Ajusta a largura para ocupar 100% do container */
+    max-width: 300px; /* Limita a largura máxima */
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px; /* Espaço abaixo de cada campo */
+    font-size: 16px; /* Tamanho da fonte */
+    background-color: #ffffff; /* Fundo branco para os campos */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transição suave */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #2e8b57; /* Verde escuro ao focar */
+    box-shadow: 0 0 5px rgba(46, 139, 87, 0.5); /* Sombra suave ao focar */
 }
 
 /* Estilização do botão de salvar */
@@ -80,6 +101,7 @@ select {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
 }
 
 .save-button:hover {

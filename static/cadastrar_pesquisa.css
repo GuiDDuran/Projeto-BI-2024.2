@@ -1,20 +1,34 @@
+/* Variáveis de cor */
+:root {
+    --background-color: #f4f4f9;
+    --primary-color: #2e8b57; /* Verde escuro */
+    --primary-light: #3cb371; /* Verde mais claro */
+    --text-color: #2c3e50;
+    --border-color: #d1d5db; /* Borda leve */
+}
+
 /* Centralizando o conteúdo da página */
 body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
-    height: 100vh;
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--background-color); /* Usando variável de cor */
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
-    width: 80%;
+    width: 100%; /* Largura total para dispositivos móveis */
     max-width: 600px; /* Ajustar a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+    padding: 20px; /* Adiciona padding interno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: white; /* Fundo branco para o container */
 }
 
 /* Estilização do cabeçalho */
@@ -28,23 +42,25 @@ body {
 /* Estilização do título da página */
 h1 {
     font-size: 2em;
-    color: #2c3e50;
+    color: var(--text-color); /* Usando variável de cor */
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
+    margin-bottom: 20px; /* Espaço abaixo do botão */
 }
 
 .back-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }
 
 /* Estilização do formulário */
@@ -65,7 +81,7 @@ input[type="date"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0 15px 0; /* Margem entre os campos */
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color); /* Usando variável de cor */
     border-radius: 5px;
     font-size: 1em;
 }
@@ -73,14 +89,16 @@ input[type="date"] {
 /* Estilização do botão de cadastrar */
 .cadastrar-button {
     padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
+    margin-top: 10px; /* Espaço acima do botão de cadastrar */
 }
 
 .cadastrar-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }

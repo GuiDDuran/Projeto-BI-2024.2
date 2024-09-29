@@ -5,77 +5,77 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #e5e7eb; /* Cor de fundo suave */
+    font-family: var(--font-family, 'Arial'), sans-serif; /* Variável para a fonte */
+    background-color: var(--background-color, #e5e7eb); /* Variável para cor de fundo suave */
 }
 
 /* Container principal */
 .page-container {
-    background-color: #ffffff;
-    border: 1px solid #d1d5db; /* Borda leve e discreta */
-    padding: 30px; /* Mais espaçamento interno */
-    margin: 20px;
-    border-radius: 15px; /* Bordas mais arredondadas para um visual mais moderno */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    max-width: 380px; /* Largura máxima para telas menores */
+    background-color: var(--container-bg-color, #ffffff); /* Cor de fundo ajustável */
+    border: var(--container-border, 1px solid #d1d5db); /* Borda leve ajustável */
+    padding: var(--container-padding, 30px); /* Espaçamento interno ajustável */
+    margin: var(--container-margin, 20px); /* Margem ajustável */
+    border-radius: var(--container-border-radius, 15px); /* Bordas arredondadas ajustáveis */
+    box-shadow: var(--container-box-shadow, 0 4px 8px rgba(0, 0, 0, 0.1)); /* Sombra ajustável */
+    max-width: var(--container-max-width, 380px); /* Largura máxima para telas menores */
     width: 100%;
     text-align: center;
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-size: var(--h1-font-size, 2rem); /* Tamanho da fonte ajustável */
+    color: var(--h1-color, #2c3e50); /* Cor do título */
+    margin-bottom: var(--h1-margin-bottom, 30px); /* Espaço inferior ajustável */
+    font-weight: var(--h1-font-weight, 600); /* Peso da fonte ajustável */
+    letter-spacing: var(--h1-letter-spacing, 1px); /* Espaçamento entre letras ajustável */
 }
 
 /* Container para os botões */
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap; /* Para os botões ficarem alinhados em telas menores */
+    gap: var(--button-gap, 15px); /* Espaço entre botões ajustável */
+    flex-wrap: wrap; /* Alinhamento flexível para telas menores */
 }
 
 /* Estilização dos botões */
 button {
-    padding: 15px 40px;
-    background-color: #2e8b57;
-    color: white;
-    border: none;
-    border-radius: 8px; /* Bordas mais arredondadas */
-    font-size: 1rem;
+    padding: var(--button-padding, 15px 40px); /* Espaçamento interno ajustável */
+    background-color: var(--button-bg-color, #2e8b57); /* Cor de fundo do botão */
+    color: var(--button-color, white); /* Cor do texto */
+    border: var(--button-border, none);
+    border-radius: var(--button-border-radius, 8px); /* Bordas arredondadas ajustáveis */
+    font-size: var(--button-font-size, 1rem); /* Tamanho da fonte ajustável */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra nos botões */
+    transition: var(--button-transition, background-color 0.3s ease, transform 0.2s ease); /* Transição suave */
+    box-shadow: var(--button-box-shadow, 0 4px 6px rgba(0, 0, 0, 0.1)); /* Sombra ajustável */
 }
 
 button:hover {
-    background-color: #3cb371;
-    transform: translateY(-3px); /* Efeito de elevação no hover */
+    background-color: var(--button-hover-bg-color, #3cb371); /* Cor ao passar o mouse */
+    transform: var(--button-hover-transform, translateY(-3px)); /* Efeito de elevação no hover */
 }
 
 button:active {
-    background-color: #2e8b57;
-    transform: translateY(1px); /* Efeito de clique */
+    background-color: var(--button-active-bg-color, #2e8b57); /* Cor ao clicar */
+    transform: var(--button-active-transform, translateY(1px)); /* Efeito de clique */
 }
 
 /* Responsividade */
 @media only screen and (max-width: 430px) {
     .page-container {
-        padding: 20px;
-        margin: 10px;
+        padding: var(--container-padding-mobile, 20px); /* Padding ajustável para mobile */
+        margin: var(--container-margin-mobile, 10px); /* Margem ajustável para mobile */
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: var(--h1-font-size-mobile, 1.8rem); /* Tamanho de fonte ajustável para mobile */
     }
 
     button {
-        width: 100%;
-        padding: 15px 0;
-        font-size: 1rem;
+        width: 100%; /* Botões ocupando toda a largura em telas pequenas */
+        padding: var(--button-padding-mobile, 15px 0); /* Padding ajustável em mobile */
+        font-size: var(--button-font-size-mobile, 1rem); /* Tamanho de fonte ajustável em mobile */
     }
 }

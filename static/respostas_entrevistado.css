@@ -3,18 +3,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
-    height: 100vh;
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
-    width: 80%;
+    width: 90%; /* Aumenta a largura para melhor uso do espaço em dispositivos móveis */
     max-width: 800px; /* Ajustar a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+    border: 1px solid #d1d5db; /* Borda leve */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas levemente arredondadas */
 }
 
 /* Estilização do cabeçalho */
@@ -27,14 +31,14 @@ body {
 
 /* Estilização do título da pesquisa */
 h2 {
-    font-size: 2.5em;
+    font-size: 2em; /* Aumenta o tamanho do título da pesquisa */
     color: #2c3e50;
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
 
 /* Estilização do nome do entrevistado */
 h3 {
-    font-size: 2em;
+    font-size: 1.5em; /* Diminui o tamanho do nome do entrevistado */
     color: #2c3e50;
     margin-top: 20px; /* Espaço acima do nome do entrevistado */
 }
@@ -48,6 +52,7 @@ h3 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 15px; /* Espaço abaixo do botão */
 }
 
 .back-button:hover {
@@ -58,15 +63,18 @@ h3 {
 .respostas {
     text-align: left; /* Para alinhar os textos à esquerda */
     margin: 20px 0; /* Espaço entre as respostas */
-    font-size: 1.2em; /* Tamanho da fonte */
+    font-size: 1em; /* Diminui o tamanho da fonte das respostas */
+    line-height: 1.5; /* Aumenta o espaço entre linhas para melhor legibilidade */
+    padding: 15px; /* Espaçamento interno */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #ffffff; /* Fundo branco */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 /* Estilização das perguntas e respostas */
 h4 {
     color: #2c3e50;
     margin: 5px 0; /* Menos espaço acima da pergunta */
-}
-
-p {
-    margin: 0 0 20px; /* Espaço reduzido entre a pergunta e sua resposta, e aumentado para a próxima pergunta */
+    font-size: 1.2em; /* Ajuste do tamanho da fonte para melhor visibilidade */
 }

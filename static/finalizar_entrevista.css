@@ -3,26 +3,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center; /* Alinhamento central vertical */
-    height: 100vh; /* Ocupar toda a altura da tela */
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f9; /* Cor de fundo clara */
+    padding: 20px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
     text-align: center; /* Centralizar texto */
+    max-width: 800px; /* Largura máxima do container */
+    width: 90%; /* Largura do container em dispositivos móveis */
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #d1d5db; /* Borda leve */
+    border-radius: 8px; /* Bordas levemente arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave para destaque */
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 2.5em; /* Tamanho do título */
+    font-size: 2.2em; /* Tamanho do título ajustado */
     color: #2c3e50; /* Cor do título */
     margin-bottom: 20px; /* Espaço abaixo do título */
 }
 
 /* Estilização do parágrafo */
 p {
-    font-size: 1.2em; /* Tamanho da fonte do parágrafo */
+    font-size: 1.1em; /* Tamanho da fonte do parágrafo ajustado */
     color: #34495e; /* Cor do parágrafo */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+}
+
+/* Estilização de botões, se houver */
+.button {
+    background-color: #2e8b57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+    margin-top: 20px; /* Espaço acima do botão */
+}
+
+.button:hover {
+    background-color: #3cb371; /* Verde mais claro ao passar o mouse */
 }

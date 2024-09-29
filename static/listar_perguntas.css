@@ -1,26 +1,33 @@
-/* Centralizando o conteúdo da página */
+/* Variáveis de cor */
+:root {
+    --background-color: #f4f4f9;
+    --primary-color: #2e8b57; /* Verde escuro */
+    --primary-light: #3cb371; /* Verde mais claro */
+    --text-color: #2c3e50;
+    --border-color: #d1d5db; /* Borda leve */
+}
+
+/* Centralizando o conteúdo da página */ 
 body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
-    height: 100vh;
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--background-color); /* Usando variável de cor */
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .page-container {
-    border: 1px solid #000000; /* Borda fina e cinza */
+    border: 1px solid var(--border-color); /* Usando variável de cor */
     padding: 20px; /* Espaçamento interno */
-    margin: 20px; /* Espaçamento externo para afastar do limite da página */
+    margin: 20px auto; /* Margem para não colar na borda superior */
     border-radius: 5px; /* Bordas levemente arredondadas */
     text-align: center;
-    width: 80%;
+    width: 90%; /* Largura maior para dispositivos móveis */
     max-width: 800px; /* Ajustar a largura máxima */
-    text-align: center;
-    margin: 20px auto; /* Margem para não colar na borda superior */
-
 }
 
 /* Estilização do cabeçalho */
@@ -33,31 +40,32 @@ body {
 
 /* Estilização do título da página */
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
+    font-size: 2.5em; /* Tamanho ajustado para melhor visualização em dispositivos móveis */
+    color: var(--text-color); /* Usando variável de cor */
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
 
 /* Estilização do nome da pesquisa */
 .nome-pesquisa {
     font-size: 1.5em;
-    color: #2c3e50;
+    color: var(--text-color); /* Usando variável de cor */
     margin: 20px 0; /* Espaço acima e abaixo do nome da pesquisa */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 20px; /* Espaço abaixo do botão */
 }
 
 .back-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }
 
 /* Estilização da tabela */
@@ -71,7 +79,7 @@ h1 {
 
 /* Cabeçalho da tabela */
 .styled-table thead tr {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: #ffffff;
     text-align: center;
 }
@@ -97,12 +105,13 @@ h1 {
 .action-button {
     padding: 10px 20px;
     background-color: transparent; /* Fundo transparente */
-    color: #2e8b57; /* Letra verde */
+    color: var(--primary-color); /* Letra verde usando variável de cor */
     border: none;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold; /* Texto em negrito */
     text-decoration: none; /* Remove sublinhado */
+    margin: 10px 0; /* Margem vertical para espaçamento */
 }
 
 .action-button:hover {
@@ -112,7 +121,7 @@ h1 {
 /* Estilização do botão de cadastrar nova pergunta */
 .cadastrar-button {
     padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white; /* Letra branca */
     border: none;
     border-radius: 5px;
@@ -122,5 +131,5 @@ h1 {
 }
 
 .cadastrar-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }

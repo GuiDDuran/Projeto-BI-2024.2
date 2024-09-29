@@ -1,20 +1,35 @@
+/* Variáveis de cor */
+:root {
+    --background-color: #f4f4f9;
+    --primary-color: #2e8b57; /* Verde escuro */
+    --primary-light: #3cb371; /* Verde mais claro */
+    --secondary-color: #5cb85c; /* Verde claro */
+    --secondary-light: #66bb6a; /* Verde um pouco mais claro */
+    --text-color: #2c3e50;
+    --border-color: #d1d5db; /* Borda leve */
+}
+
 /* Centralizando o conteúdo da página */
 body {
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
-    height: 100vh;
+    height: auto; /* Ajusta a altura para o conteúdo */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: var(--background-color); /* Usando variável de cor */
+    padding: 10px; /* Adiciona padding para não colar na borda */
 }
 
 /* Container principal */
 .container {
-    width: 80%;
-    max-width: 600px; /* Ajustar a largura máxima */
+    width: 90%; /* Aumenta a largura para melhor uso do espaço em dispositivos móveis */
+    max-width: 600px; /* Mantém a largura máxima */
     text-align: center;
     margin: 20px auto; /* Margem para não colar na borda superior */
+    border: 1px solid var(--border-color); /* Borda leve */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas levemente arredondadas */
 }
 
 /* Estilização do cabeçalho */
@@ -27,37 +42,38 @@ body {
 
 /* Estilização do título da página */
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
+    font-size: 2.2em; /* Ajusta para melhor visualização em dispositivos móveis */
+    color: var(--text-color); /* Usando variável de cor */
     margin-left: 10px; /* Espaço entre o botão e o título */
 }
 
 /* Estilização do nome da pesquisa */
 .nome-pesquisa {
     font-size: 1.5em;
-    color: #2c3e50;
+    color: var(--text-color); /* Usando variável de cor */
     margin: 20px 0; /* Espaço acima e abaixo do nome da pesquisa */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-bottom: 15px; /* Espaço abaixo do botão */
 }
 
 .back-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }
 
 /* Estilização do botão de salvar pergunta */
 .salvar-button {
     padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
+    background-color: var(--primary-color); /* Usando variável de cor */
     color: white; /* Letra branca */
     border: none;
     border-radius: 5px;
@@ -67,25 +83,80 @@ h1 {
 }
 
 .salvar-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--primary-light); /* Usando variável de cor */
 }
 
 /* Estilização do botão de adicionar opção */
 .adicionar-opcao {
     padding: 5px 10px;
-    background-color: #5cb85c; /* Verde claro */
+    background-color: var(--secondary-color); /* Usando variável de cor */
     color: white; /* Letra branca */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    margin: 5px 0; /* Espaçamento entre os botões */
 }
 
 .adicionar-opcao:hover {
-    background-color: #66bb6a; /* Verde um pouco mais claro */
+    background-color: var(--secondary-light); /* Usando variável de cor */
 }
 
 /* Espaçamento entre as opções de resposta */
 #respostas_container input {
-    margin-bottom: 10px; /* Espaço entre as caixas de texto */
+    margin-bottom: 15px; /* Espaço entre as caixas de texto */
+    width: 100%; /* Faz com que as entradas ocupem toda a largura disponível */
+    padding: 10px; /* Adiciona preenchimento interno */
+    border: 1px solid var(--border-color); /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte para legibilidade */
+}
+
+/* Estilização específica para "Texto Pergunta:" e "Tipo Pergunta:" */
+label {
+    font-size: 1.2em; /* Aumenta o tamanho da fonte dos rótulos */
+    color: var(--text-color); /* Usando variável de cor */
+    margin-bottom: 8px; /* Espaço abaixo dos rótulos */
+    display: block; /* Faz com que os rótulos ocupem toda a largura disponível */
+}
+
+.input-container {
+    margin-bottom: 20px; /* Espaço entre os campos de entrada */
+}
+
+/* Ajustando o espaço entre os rótulos e os campos de entrada */
+input[type="text"],
+input[type="select"] {
+    margin-bottom: 10px; /* Espaço entre o rótulo e o campo de entrada */
+    width: 100%; /* Faz com que os campos ocupem toda a largura disponível */
+    padding: 10px; /* Adiciona preenchimento interno */
+    border: 1px solid var(--border-color); /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte para legibilidade */
+}
+
+/* Estilização do botão de seleção de tipo de pergunta */
+select {
+    width: 80%; /* Diminui a largura do botão para se alinhar com o campo de texto */
+    margin: 10px auto; /* Centraliza o botão */
+    padding: 10px; /* Adiciona preenchimento interno */
+    border: 1px solid var(--border-color); /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte para legibilidade */
+    color: var(--text-color); /* Cor do texto */
+    background-color: white; /* Cor de fundo branca */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s, border-color 0.3s; /* Transição suave para a mudança de cor */
+}
+
+/* Efeito de hover para o botão */
+select:hover {
+    background-color: var(--primary-light); /* Cor de fundo ao passar o mouse */
+    border-color: var(--primary-color); /* Mudança de cor da borda ao passar o mouse */
+}
+
+/* Efeito de foco para o botão */
+select:focus {
+    outline: none; /* Remove o contorno padrão */
+    border-color: var(--primary-color); /* Altera a cor da borda ao focar */
 }

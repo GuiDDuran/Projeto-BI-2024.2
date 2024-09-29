@@ -2,32 +2,36 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Mudar para flex-start para não ocupar toda a altura */
+    align-items: flex-start; /* Mantendo o conteúdo no topo */
     height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: var(--body-font-family, Arial, sans-serif); /* Variável para a fonte */
+    background-color: var(--background-color, #f4f4f9); /* Variável para a cor de fundo */
 }
 
 /* Container principal */
 .container {
     width: 80%;
-    max-width: 800px; /* Ajustar a largura máxima */
+    max-width: var(--container-max-width, 800px); /* Variável para ajustar a largura máxima */
     text-align: center;
-    margin: 20px auto; /* Margem para não colar na borda superior */
+    margin: var(--container-margin, 20px auto); /* Margem centralizada e ajustável */
+    padding: var(--container-padding, 20px); /* Padding opcional para espaçamento interno */
+    background-color: var(--container-bg-color, #fff); /* Cor de fundo ajustável */
+    border-radius: var(--container-border-radius, 8px); /* Bordas arredondadas */
+    box-shadow: var(--container-shadow, 0 4px 8px rgba(0, 0, 0, 0.1)); /* Sombra suave */
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 2.5em;
-    color: #2c3e50;
-    margin-bottom: 10px; /* Reduzir espaço abaixo do título */
+    font-size: var(--h1-font-size, 2.5em); /* Variável para ajustar tamanho da fonte */
+    color: var(--h1-color, #2c3e50); /* Variável para cor do título */
+    margin-bottom: var(--h1-margin-bottom, 10px); /* Espaçamento inferior ajustável */
 }
 
 /* Estilização dos subtítulos */
 h2 {
-    color: #34495e; /* Tom de azul mais claro */
-    margin: 10px 0; /* Espaço entre os títulos */
+    color: var(--subtitle-color, #34495e); /* Variável para cor dos subtítulos */
+    margin: var(--subtitle-margin, 10px 0); /* Espaço ajustável entre os subtítulos */
 }
 
 /* Estilização do cabeçalho */
@@ -35,40 +39,57 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--header-gap, 15px); /* Espaço entre os elementos do cabeçalho */
 }
 
 /* Estilização do botão de voltar */
 .back-button {
-    font-size: 1.5em;
-    margin-right: 15px;
+    font-size: var(--back-button-font-size, 1.5em); /* Variável para tamanho da fonte */
+    margin-right: var(--back-button-margin-right, 15px); /* Espaço à direita ajustável */
     background: none;
     border: none;
     cursor: pointer;
+    color: var(--back-button-color, inherit); /* Cor herdada ou ajustável */
+    transition: color 0.3s ease; /* Transição suave no hover */
+}
+
+.back-button:hover {
+    color: var(--back-button-hover-color, #2c3e50); /* Cor ao passar o mouse */
 }
 
 /* Estilização do formulário de cadastro */
 .form-cadastro {
-    margin-top: 20px;
+    margin-top: var(--form-margin-top, 20px); /* Espaço ajustável acima do formulário */
 }
 
 /* Labels e Inputs */
 label {
     display: block;
-    margin-top: 10px;
+    margin-top: var(--label-margin-top, 10px); /* Espaço ajustável acima dos labels */
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: var(--input-padding, 10px); /* Padding para inputs */
+    margin-top: var(--input-margin-top, 5px); /* Espaço acima dos inputs */
+    border: var(--input-border, 1px solid #ccc); /* Borda ajustável */
+    border-radius: var(--input-border-radius, 5px); /* Bordas arredondadas */
+    box-sizing: border-box;
 }
 
 /* Botão de submissão */
 .submit-button {
-    padding: 10px 20px;
-    background-color: #2e8b57; /* Verde escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: var(--button-padding, 10px 20px); /* Padding do botão */
+    background-color: var(--button-bg-color, #2e8b57); /* Cor de fundo do botão */
+    color: var(--button-text-color, white); /* Cor do texto */
+    border: var(--button-border, none);
+    border-radius: var(--button-border-radius, 5px); /* Bordas arredondadas */
+    font-size: var(--button-font-size, 16px); /* Tamanho da fonte */
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: var(--button-margin-top, 20px); /* Espaço ajustável acima do botão */
+    transition: background-color 0.3s ease; /* Transição de cor ao passar o mouse */
 }
 
 .submit-button:hover {
-    background-color: #3cb371; /* Verde mais claro */
+    background-color: var(--button-hover-bg-color, #3cb371); /* Cor de fundo no hover */
 }

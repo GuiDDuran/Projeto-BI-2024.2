@@ -7,9 +7,9 @@ app = Flask(__name__)
 # Função para conectar ao banco de dados PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
-        dbname='postgres',
+        dbname='projetoilhaprimeira',
         user='postgres',
-        password='123',
+        password='admin', 
         host='localhost',
         port='5432'
     )
@@ -383,18 +383,27 @@ def cadastrar_entrevista():
                            entrevistado_id=entrevistado_id)
 
 # Rota para salvar uma entrevista
+# Rota para salvar uma entrevista
 @app.route('/salvar_respostas', methods=['POST'])
 def salvar_respostas():
     pesquisa_id = request.form.get('pesquisa_id')
     entrevistado_id = request.form.get('entrevistado_id')
     pergunta_id = request.form.get('pergunta_id')
-    print(f"pergunta_id: {pergunta_id} aqui") #não chega
     resposta = request.form.get('resposta')  # Para respostas únicas
     respostas_multipla = request.form.getlist('respostas')  # Para múltipla escolha
+    print("respostas_multipla: ", respostas_multipla)  # Para depuração
     indice_pergunta = request.form.get('indice_pergunta')
 
     conn = get_db_connection()
     cur = conn.cursor()
+
+    # Função para buscar o texto da opção no banco
+    def buscar_texto_opcao(pergunta_id, pesquisa_pergunta_opcao_id):
+        cur.execute("""
+            SELECT opcao FROM pesquisa_pergunta_opcao WHERE pesquisa_pergunta_id = %s AND pesquisa_pergunta_opcao_id = %s
+        """, (pergunta_id, pesquisa_pergunta_opcao_id))
+        resultado = cur.fetchone()
+        return resultado[0] if resultado else ''  # Retorna string vazia se não encontrado
 
     # Se a resposta for nula ou múltipla escolha for vazia, insira uma resposta vazia
     if not resposta and not respostas_multipla:
@@ -402,20 +411,26 @@ def salvar_respostas():
             INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
             VALUES (%s, %s, '')
         """, (entrevistado_id, pergunta_id))
-
-    # Salve a resposta no banco de dados
-    if resposta:
-        cur.execute("""
-            INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
-            VALUES (%s, %s, %s)
-        """, (entrevistado_id, pergunta_id, resposta))
-    elif respostas_multipla:
-        for resp in respostas_multipla:
+    else:
+        # Salvar a resposta no banco de dados
+        if resposta:
+            # Para respostas únicas, buscar o texto correspondente se for um ID numérico
+            resposta_texto = buscar_texto_opcao(pergunta_id, resposta) if resposta.isdigit() else resposta.strip('{}')  # Remove chaves, se necessário
             cur.execute("""
                 INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
                 VALUES (%s, %s, %s)
-            """, (entrevistado_id, pergunta_id, resp))
+            """, (entrevistado_id, pergunta_id, resposta_texto))
+        
+        # Salvar respostas de múltipla escolha
+        if respostas_multipla:
+            respostas_texto = [buscar_texto_opcao(pergunta_id, opcao_id) for opcao_id in respostas_multipla]
+            resposta_concatenada = "|".join(respostas_texto)
+            cur.execute("""
+                INSERT INTO pergunta_resposta (entrevistado_id, pesquisa_pergunta_id, resposta)
+                VALUES (%s, %s, %s)
+            """, (entrevistado_id, pergunta_id, resposta_concatenada))
 
+    # Commit e fechamento da conexão
     conn.commit()
     cur.close()
     conn.close()

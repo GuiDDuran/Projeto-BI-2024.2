@@ -10,10 +10,10 @@
     <div class="container">
         <div class="header">
             <button class="back-button" onclick="window.history.back()">←</button>
-            <h2>Pesquisa: {{ pesquisa_nome }}</h2>
+            <h2>{{ pesquisa_nome }}</h2>
         </div>
 
-        <h3>Respostas do Entrevistado: {{ entrevistado_nome }}</h3>
+        <h3>{{ entrevistado_nome }}</h3>
 
         <div class="respostas">
             {% for pergunta in perguntas_respostas %}

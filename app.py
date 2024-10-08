@@ -253,7 +253,68 @@ def salvar_entrevistado():
         cur.close()
         conn.close()
 
-    # Redirecionar para a rota de cadastrar_endereco com pesquisa_id e entrevistado_id
+    # Redirecionar para a rota de cadastrar_telefone com pesquisa_id e entrevistado_id
+    return redirect(url_for('cadastrar_telefone', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id))
+
+# Rota para cadastrar um telefone
+@app.route('/cadastrar_telefone', methods=['GET'])
+def cadastrar_telefone():
+    pesquisa_id = request.args.get('pesquisa_id')
+    entrevistado_id = request.args.get('entrevistado_id')
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Buscar o nome da pesquisa
+    cur.execute("SELECT pesquisa_nome FROM pesquisa WHERE pesquisa_id = %s", (pesquisa_id,))
+    pesquisa_info = cur.fetchone()
+
+    # Buscar o nome do entrevistado
+    cur.execute("SELECT entrevistado_nome FROM entrevistado WHERE entrevistado_id = %s", (entrevistado_id,))
+    entrevistado_info = cur.fetchone()
+
+    cur.execute("SELECT telefone_tipo_id, telefone_tipo FROM telefone_tipo")
+    telefone_tipos = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    # Verificar se a pesquisa ou o entrevistado foram encontrados
+    if pesquisa_info is None or entrevistado_info is None:
+        return "Pesquisa ou entrevistado não encontrados.", 404
+
+    pesquisa_nome = pesquisa_info[0]
+    entrevistado_nome = entrevistado_info[0]
+
+    return render_template('cadastrar_telefone.html', pesquisa_nome=pesquisa_nome, entrevistado_nome=entrevistado_nome, pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id, telefone_tipos=telefone_tipos)
+
+# Rota para salvar um telefone
+@app.route('/salvar_telefone', methods=['POST'])
+def salvar_telefone():
+    entrevistado_id = request.form.get('entrevistado_id')
+    ddi = request.form.get('ddi')
+    ddd = request.form.get('ddd')
+    telefone = request.form.get('telefone')
+    telefone_tipo_id = request.form.get('telefone_tipo_id')
+    eh_telefone_principal = request.form.get('eh_telefone_principal')
+    pesquisa_id = request.form.get('pesquisa_id')
+
+    eh_telefone_principal = True if eh_telefone_principal == 'on' else False
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    # Inserir o telefone no banco de dados
+    cur.execute("""INSERT INTO entrevistado_telefone (entrevistado_id, ddi, ddd, telefone, telefone_tipo_id, eh_telefone_principal)
+                     VALUES (%s, %s, %s, %s, %s, %s)""",
+                        (entrevistado_id, ddi, ddd, telefone, telefone_tipo_id, eh_telefone_principal))
+    
+    conn.commit()
+
+    cur.close()
+    conn.close()
+
+    # Redirecionar para a rota cadastrar_endereco
     return redirect(url_for('cadastrar_endereco', pesquisa_id=pesquisa_id, entrevistado_id=entrevistado_id))
 
 # Rota para cadastrar um endereço

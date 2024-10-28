@@ -105,16 +105,16 @@ Armazena os endereços dos entrevistados.
 - `descricao`: Descrição adicional do endereço (ex.: Casa, Trabalho).
 
 ### 11. **Etapa de Transferência de Dados Transacional**
-Organiza a transferência dos dados transacionais para o ambiente de stage, garantindo que a base transacional permaneça intacta e preservada.
+Organiza a transferência dos dados transacionais para a stage area, garantindo que a base transacional permaneça intacta e preservada.
 
 - `Extração de Dados`: Realiza a extração dos dados do banco transacional utilizando um script em Python.
-- `Transferência Stage`: Transfere os dados extraídos para o ambiente de stage, onde podem ser processados sem afetar o banco transacional.
+- `Transferência Stage`: Transfere os dados extraídos para stage area, onde podem ser processados sem afetar o banco transacional.
 - `Preservação Transacional`: Garante que o ambiente transacional fique isolado de operações pesadas, mantendo sua integridade e desempenho.
-- `Processamento Stage`: Realiza o processamento e transformações necessárias no stage, preservando a performance do ambiente original.
+- `Processamento Stage`: Realiza o processamento e transformações necessárias na stage, preservando a performance do ambiente original.
 - `Validação Dados`: Executa a validação dos dados após as transformações, assegurando consistência para uso nas próximas análises.
 
 ### 12. **Modelagem do Data Warehouse**
-A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi  projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
+A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
 
 - `dim_entrevistado`: Armazena informações dos entrevistados.
 - `dim_região`: Armazena informações sobre a região dos entrevistados.

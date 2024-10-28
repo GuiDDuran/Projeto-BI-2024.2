@@ -104,8 +104,8 @@ Armazena os endereços dos entrevistados.
 - `cep`: Código de Endereçamento Postal (CEP).
 - `descricao`: Descrição adicional do endereço (ex.: Casa, Trabalho).
 
-  ### 11. **Etapa de Transferência de Dados Transacional**
-  Organiza a transferência dos dados transacionais para o ambiente de stage, garantindo que a base transacional permaneça intacta e preservada.
+### 11. **Etapa de Transferência de Dados Transacional**
+Organiza a transferência dos dados transacionais para o ambiente de stage, garantindo que a base transacional permaneça intacta e preservada.
 
 - `extração_dados`: Realiza a extração dos dados do banco transacional utilizando um script em Python.
 - `transferencia_stage`: Transfere os dados extraídos para o ambiente de stage, onde podem ser processados sem afetar o banco transacional.
@@ -113,12 +113,12 @@ Armazena os endereços dos entrevistados.
 - `processamento_stage`: Realiza o processamento e transformações necessárias no stage, preservando a performance do ambiente original.
 - `validacao_dados`: Executa a validação dos dados após as transformações, assegurando consistência para uso nas próximas análises.
 
-  ### 12. **Modelagem do Data Warehouse**
-  A modelagem do Data Warehouse (DW) foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
+### 12. **Modelagem do Data Warehouse**
+A modelagem do Data Warehouse (DW) foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
 
-  - `dim_entrevistado`: Armazena informações dos entrevistados.
-  - `dim_região`: Armazena informações sobre a região dos entrevistados.
-  - `dim_data`: Armazena detalhes sobre as datas para facilitar a análise temporal.
+- `dim_entrevistado`: Armazena informações dos entrevistados.
+- `dim_região`: Armazena informações sobre a região dos entrevistados.
+- `dim_data`: Armazena detalhes sobre as datas para facilitar a análise temporal.
 
 ## Tecnologias Utilizadas
 

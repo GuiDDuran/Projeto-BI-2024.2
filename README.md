@@ -116,14 +116,9 @@ Armazena os endereços dos entrevistados.
   ### 12. **Modelagem do Data Warehouse**
   A modelagem do Data Warehouse (DW) foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
 
-  - `Dimensão Pesquisa`:
-  - `Dimensão Entrevistado`:
-  - `Dimensão Gênero`:
-  - `Dimensão Pergunta`:
-  - `Dimensão Resposta`:
-  - `Dimensão Telefone`:
-  - `Dimensão Endereço`:
-  - `Fato Respostas`:
+  - `dim_entrevistado`: Armazena informações dos entrevistados.
+  - `dim_região`: Armazena informações sobre a região dos entrevistados.
+  - `dim_data`: Armazena detalhes sobre as datas para facilitar a análise temporal.
 
 ## Tecnologias Utilizadas
 

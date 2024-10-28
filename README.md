@@ -104,6 +104,15 @@ Armazena os endereços dos entrevistados.
 - `cep`: Código de Endereçamento Postal (CEP).
 - `descricao`: Descrição adicional do endereço (ex.: Casa, Trabalho).
 
+  ###11. ** Etapa de Transferência de Dados Transacional**
+  Organiza a transferência dos dados transacionais para o ambiente de stage, garantindo que a base transacional permaneça intacta e preservada.
+
+- `extração_dados`: Realiza a extração dos dados do banco transacional utilizando um script em Python.
+- `transferencia_stage`: Transfere os dados extraídos para o ambiente de stage, onde podem ser processados sem afetar o banco transacional.
+- `preservacao_transacional`: Garante que o ambiente transacional fique isolado de operações pesadas, mantendo sua integridade e desempenho.
+- `processamento_stage`: Realiza o processamento e transformações necessárias no stage, preservando a performance do ambiente original.
+- `validacao_dados`: Executa a validação dos dados após as transformações, assegurando consistência para uso nas próximas análises.
+
 ## Tecnologias Utilizadas
 
 - **PostgreSQL**: Sistema de banco de dados relacional usado para modelar e gerenciar as tabelas e relacionamentos.

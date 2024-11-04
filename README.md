@@ -127,6 +127,7 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
 - **SQL**: Linguagem utilizada para criação de tabelas, relacionamento de entidades, restrições e exclusão lógica.
 - **Python**: Linguagem de programação utilizada para desenvolvimento de scripts e integração com o banco de dados.
 -  **Power Architect**: Ferramenta de modelagem de banco de dados que permite realizar engenharia reversa de bancos de dados existentes para criar modelos visuais detalhados.
+-  **Pentaho**: Ferramenta de ETL que permite coletar, transformar, monitorar e analisar dados, oferecendo recursos integrados para facilitar todo o processo de manipulação de informações.
 
 ## Considerações Finais
 

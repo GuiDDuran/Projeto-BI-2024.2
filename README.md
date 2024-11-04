@@ -119,7 +119,7 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
 - `dim_entrevistado`: Armazena informações dos entrevistados.
 - `dim_região`: Armazena informações sobre a região dos entrevistados.
 - `dim_data`: Armazena detalhes sobre as datas para facilitar a análise temporal.
-- -`dim-pergunta`: Armazena informações das perguntas realizadas para os entrevistados.
+- `dim-pergunta`: Armazena informações das perguntas realizadas para os entrevistados.
 
 ## Tecnologias Utilizadas
 

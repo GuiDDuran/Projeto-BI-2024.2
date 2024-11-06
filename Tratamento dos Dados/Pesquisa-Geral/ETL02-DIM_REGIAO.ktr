@@ -430,7 +430,7 @@
     <created_date>2024/11/01 18:06:03.479</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/11/01 18:06:03.479</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -598,8 +598,8 @@
       <return>
         <name>sk_regiao</name>
         <rename/>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
         <version>etl_versao</version>
       </return>
     </fields>
@@ -608,8 +608,8 @@
     <max_year>2199</max_year>
     <cache_size>5000</cache_size>
     <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>sysdate</start_date_alternative>
     <start_date_field_name/>
     <useBatch>N</useBatch>
     <attributes/>
@@ -622,52 +622,6 @@
     </remotesteps>
     <GUI>
       <xloc>688</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>entrevistado_id</name>
-      </remove>
-      <remove>
-        <name>logradouro</name>
-      </remove>
-      <remove>
-        <name>numero</name>
-      </remove>
-      <remove>
-        <name>complemento</name>
-      </remove>
-      <remove>
-        <name>cep</name>
-      </remove>
-      <remove>
-        <name>descricao</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
@@ -945,6 +899,52 @@ FROM "public".entrevistado_endereco
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>entrevistado_id</name>
+      </remove>
+      <remove>
+        <name>logradouro</name>
+      </remove>
+      <remove>
+        <name>numero</name>
+      </remove>
+      <remove>
+        <name>complemento</name>
+      </remove>
+      <remove>
+        <name>cep</name>
+      </remove>
+      <remove>
+        <name>descricao</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>

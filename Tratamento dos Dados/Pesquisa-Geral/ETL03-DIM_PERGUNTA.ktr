@@ -430,7 +430,7 @@
     <created_date>2024/11/03 18:28:02.431</created_date>
     <modified_user>-</modified_user>
     <modified_date>2024/11/03 18:28:02.431</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -539,43 +539,13 @@
   </connection>
   <order>
     <hop>
-      <from>Carrega Tipo Pergunta</from>
-      <to>Sort rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Carrega Pergunta</from>
-      <to>Sort rows 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows</from>
-      <to>Inner Join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sort rows 2</from>
-      <to>Inner Join</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Inner Join</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 2</from>
+      <from>Carrega </from>
       <to>Carrega Atualiza dim_pergunta</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Carrega Pergunta</name>
+    <name>Carrega </name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -586,14 +556,10 @@
       <schema_name/>
     </partitioning>
     <connection>stage_projetoilhaprimeira</connection>
-    <sql>SELECT
-  pesquisa_pergunta_id
-, pesquisa_id
-, pesquisa_pergunta_tipo_id
-, pergunta_texto
-, data_cadastro
-, ativo
-FROM "public".pesquisa_pergunta
+    <sql>SELECT 
+pp.pesquisa_pergunta_id, ppt.pesquisa_pergunta_tipo, pp.ativo
+FROM pesquisa_pergunta pp
+JOIN pesquisa_pergunta_tipo ppt on ppt.pesquisa_pergunta_tipo_id = pp.pesquisa_pergunta_tipo_id
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -608,187 +574,8 @@ FROM "public".pesquisa_pergunta
         <name>pesquisa_pergunta_id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Carrega Tipo Pergunta</origin>
         <comments>pesquisa_pergunta_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>pesquisa_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>pesquisa_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>pesquisa_pergunta_tipo_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>pesquisa_pergunta_tipo_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>pergunta_texto</name>
-        <length>512</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>pergunta_texto</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>data_cadastro</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>data_cadastro</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Boolean</type>
-        <storagetype>normal</storagetype>
-        <name>ativo</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>ativo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Carrega Tipo Pergunta</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>stage_projetoilhaprimeira</connection>
-    <sql>SELECT
-  pesquisa_pergunta_tipo_id
-, pesquisa_pergunta_tipo
-, data_cadastro
-, ativo
-FROM "public".pesquisa_pergunta_tipo
-</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>pesquisa_pergunta_tipo_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input 2</origin>
-        <comments>pesquisa_pergunta_tipo_id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -810,31 +597,8 @@ FROM "public".pesquisa_pergunta_tipo
         <name>pesquisa_pergunta_tipo</name>
         <length>32</length>
         <precision>-1</precision>
-        <origin>Table input 2</origin>
+        <origin>Carrega Tipo Pergunta</origin>
         <comments>pesquisa_pergunta_tipo</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>data_cadastro</name>
-        <length>6</length>
-        <precision>-1</precision>
-        <origin>Table input 2</origin>
-        <comments>data_cadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -856,7 +620,7 @@ FROM "public".pesquisa_pergunta_tipo
         <name>ativo</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>Table input 2</origin>
+        <origin>Carrega Tipo Pergunta</origin>
         <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -883,254 +647,7 @@ FROM "public".pesquisa_pergunta_tipo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>pesquisa_pergunta_tipo_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>pesquisa_pergunta_tipo_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Inner Join</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Sort rows</step1>
-    <step2>Sort rows 2</step2>
-    <keys_1>
-      <key>pesquisa_pergunta_tipo_id</key>
-    </keys_1>
-    <keys_2>
-      <key>pesquisa_pergunta_tipo_id</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>pesquisa_pergunta_tipo_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pesquisa_pergunta_tipo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>data_cadastro</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ativo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pesquisa_pergunta_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pesquisa_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pesquisa_pergunta_tipo_id_1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pergunta_texto</name>
-        <rename/>
-      </field>
-      <field>
-        <name>data_cadastro_1</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ativo_1</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>pesquisa_pergunta_tipo_id</name>
-      </remove>
-      <remove>
-        <name>data_cadastro</name>
-      </remove>
-      <remove>
-        <name>pesquisa_id</name>
-      </remove>
-      <remove>
-        <name>pesquisa_pergunta_tipo_id_1</name>
-      </remove>
-      <remove>
-        <name>pergunta_texto</name>
-      </remove>
-      <remove>
-        <name>data_cadastro_1</name>
-      </remove>
-      <remove>
-        <name>ativo_1</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>pesquisa_pergunta_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>pesquisa_pergunta_tipo</name>
-        <rename/>
-      </field>
-      <field>
-        <name>ativo</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
+      <xloc>544</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1146,7 +663,7 @@ FROM "public".pesquisa_pergunta_tipo
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <schema/>
+    <schema>public</schema>
     <table>dim_pergunta</table>
     <connection>dw_pesquisageral</connection>
     <commit>100</commit>
@@ -1154,7 +671,7 @@ FROM "public".pesquisa_pergunta_tipo
     <fields>
       <key>
         <name>pesquisa_pergunta_id</name>
-        <lookup>sk_pergunta</lookup>
+        <lookup>nk_pergunta</lookup>
       </key>
       <date>
         <name/>
@@ -1174,8 +691,8 @@ FROM "public".pesquisa_pergunta_tipo
       <return>
         <name>sk_pergunta</name>
         <rename/>
-        <creation_method>autoinc</creation_method>
-        <use_autoinc>Y</use_autoinc>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
         <version>etl_versao</version>
       </return>
     </fields>
@@ -1184,8 +701,8 @@ FROM "public".pesquisa_pergunta_tipo
     <max_year>2199</max_year>
     <cache_size>5000</cache_size>
     <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>sysdate</start_date_alternative>
     <start_date_field_name/>
     <useBatch>N</useBatch>
     <attributes/>
@@ -1197,7 +714,7 @@ FROM "public".pesquisa_pergunta_tipo
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1128</xloc>
+      <xloc>704</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>

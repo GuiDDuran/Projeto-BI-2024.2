@@ -113,12 +113,16 @@ Organiza a transferência dos dados transacionais para a stage area, garantindo 
 - Processamento Stage: Realiza o processamento e transformações necessárias na stage, preservando a performance do ambiente original.
 - Validação Dados: Executa a validação dos dados após as transformações, assegurando consistência para uso nas próximas análises.
 
-### 12. **Modelagem do Data Warehouse**
+### 12. **Modelagem do Data Warehouse - Pesquisa Geral**
 A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
 
 - `dim_entrevistado`: Armazena informações dos entrevistados.
 - `dim_região`: Armazena informações sobre a região dos entrevistados.
 - `dim_data`: Armazena detalhes sobre as datas para facilitar a análise temporal.
+- `dim-pergunta`: Armazena informações das perguntas realizadas para os entrevistados.
+
+  ![image](https://github.com/user-attachments/assets/84ac245d-2ed3-4281-a86f-b7150de72f3b)
+
 
 ## Tecnologias Utilizadas
 
@@ -126,6 +130,7 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
 - **SQL**: Linguagem utilizada para criação de tabelas, relacionamento de entidades, restrições e exclusão lógica.
 - **Python**: Linguagem de programação utilizada para desenvolvimento de scripts e integração com o banco de dados.
 -  **Power Architect**: Ferramenta de modelagem de banco de dados que permite realizar engenharia reversa de bancos de dados existentes para criar modelos visuais detalhados.
+-  **Pentaho**: Ferramenta de ETL que permite coletar, transformar, monitorar e analisar dados, oferecendo recursos integrados para facilitar todo o processo de manipulação de informações.
 
 ## Considerações Finais
 

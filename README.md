@@ -135,25 +135,26 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
   ![image](https://github.com/user-attachments/assets/84ac245d-2ed3-4281-a86f-b7150de72f3b)
 
 ### 14. **Tratamento do Data Warehouse com Pentaho**
+No projeto de criação do sistema de perguntas e entrevista, o Pentaho foi utilizado como ferramenta de ETL (Extração, Transformação e Carga) para o tratamento e integração de dados em um Data Warehouse (DW) dedicado à análise das informações coletadas.
 
-Tratamento Entrevistado 
+-Tratamento Entrevistado 
 
-![Tratamento_Entrevistado](https://github.com/user-attachments/assets/f5ef0907-eacc-4c3f-8d7f-b286eb62e387)
-
-
-Tratamento Pergunta
-
-![Tratamento_Pergunta](https://github.com/user-attachments/assets/67eb5966-5aad-4153-b522-ce579bb9db19)
+ ![Tratamento_Entrevistado](https://github.com/user-attachments/assets/f5ef0907-eacc-4c3f-8d7f-b286eb62e387)
 
 
-Tratamento Pesquisa 
+-Tratamento Pergunta
 
-![Tratamento_Pesquisa](https://github.com/user-attachments/assets/11003181-edec-4501-9998-e0e371ad29ba)
+ ![Tratamento_Pergunta](https://github.com/user-attachments/assets/67eb5966-5aad-4153-b522-ce579bb9db19)
 
 
-Tratamento Região
+-Tratamento Pesquisa 
 
-![Tratamento_Região](https://github.com/user-attachments/assets/688777b2-b2b2-40c7-ba1e-bba8311bc6fe)
+ ![Tratamento_Pesquisa](https://github.com/user-attachments/assets/11003181-edec-4501-9998-e0e371ad29ba)
+
+
+-Tratamento Região
+
+ ![Tratamento_Região](https://github.com/user-attachments/assets/688777b2-b2b2-40c7-ba1e-bba8311bc6fe)
 
 
 ## Tecnologias Utilizadas

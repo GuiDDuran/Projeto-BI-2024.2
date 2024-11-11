@@ -135,7 +135,7 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
   ![image](https://github.com/user-attachments/assets/84ac245d-2ed3-4281-a86f-b7150de72f3b)
 
 ### 14. **Tratamento do Data Warehouse com Pentaho**
-No projeto de criação do sistema de perguntas e entrevista, o Pentaho foi utilizado como ferramenta de ETL (Extração, Transformação e Carga) para o tratamento e integração de dados em um Data Warehouse (DW) dedicado à análise das informações coletadas.
+O Pentaho foi utilizado como ferramenta de ETL (Extração, Transformação e Carga) para o tratamento e integração de dados ao Data Warehouse dedicado à análise das informações coletadas.
 
 - `Tratamento Entrevistado`: 
 

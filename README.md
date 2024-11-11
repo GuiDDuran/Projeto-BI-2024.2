@@ -114,7 +114,16 @@ Organiza a transferência dos dados transacionais para a stage area, garantindo 
 - Validação Dados: Executa a validação dos dados após as transformações, assegurando consistência para uso nas próximas análises.
 
 ### 12. **Levantamento de Perguntas** 
+Para o desenvolvimento do sistema de entrevista, foi realizado um levantamento criterioso das perguntas que seriam incluídas, adaptando-as ao contexto da comunidade local na ilha. O processo seguiu as etapas abaixo:
 
+- Modelagem Inicial das Perguntas: Utilizamos como base o modelo de perguntas fornecido pelo IBGE. Esse modelo serviu de referência inicial, considerando que já contempla uma estrutura sólida e bem estabelecida para entrevistas de levantamento de dados demográficos e socioeconômicos.
+
+- Adequação ao Contexto Local: Para garantir que o questionário estivesse alinhado com a realidade da ilha, realizamos uma entrevista com a representante local. Durante essa reunião, ela nos ajudou a ajustar as perguntas de acordo com a situação específica da comunidade. Por exemplo, eliminamos questões sobre serviços de saúde e segurança, uma vez que esses serviços não estão presentes na ilha.
+
+- Filtragem e Seleção das Perguntas: Após as observações da representante local, procedemos com uma nova filtragem do questionário. Essa etapa teve como objetivo garantir que cada pergunta fosse relevante e estivesse contextualizada com a realidade local.
+
+- Definição dos Tipos de Resposta: Cada pergunta foi então analisada para determinar o tipo de resposta mais adequado. Classificamos as respostas em formatos de resposta única ou múltipla, dependendo da natureza da informação desejada e da complexidade de cada pergunta.
+  
 ### 13. **Modelagem do Data Warehouse - Pesquisa Geral**
 A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projetada para atender às necessidades de armazenamento, consulta e análise de dados relacionados a pesquisas e entrevistas, garantindo uma estrutura escalável e de fácil manutenção.
 

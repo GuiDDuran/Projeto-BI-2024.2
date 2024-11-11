@@ -1,6 +1,6 @@
 # Projeto de Pesquisa e Entrevistas - Banco de Dados
 
-Este projeto está em desenvolvimento para gerenciar pesquisas e entrevistas, incluindo o cadastro de entrevistados, suas informações pessoais, perguntas e respostas das pesquisas, além de controle de dados relacionados a telefones e endereços. O banco de dados foi modelado para ser escalável, seguro e de fácil manutenção.
+Este projeto foi desenvolvido para gerenciar pesquisas e entrevistas, incluindo o cadastro de entrevistados, suas informações pessoais, perguntas e respostas das pesquisas, além de controle de dados relacionados a telefones e endereços. O banco de dados foi modelado para ser escalável, seguro e de fácil manutenção.
 
 ## Estrutura do Projeto
 
@@ -167,4 +167,4 @@ No projeto de criação do sistema de perguntas e entrevista, o Pentaho foi util
 
 ## Considerações Finais
 
-Este projeto está em desenvolvimento com o objetivo de fornecer uma análise para a Ilha Primeira com o fácil crescimento e manutenção de novas pesquisas e entrevistados ao longo do tempo. O banco de dados está preparado para armazenar grandes volumes de dados de forma organizada, garantindo a integridade e segurança das informações.
+Este projeto foi desenvolvido com o objetivo de fornecer uma análise para a Ilha Primeira de fácil crescimento e manutenção de novas pesquisas e entrevistados ao longo do tempo. O banco de dados está preparado para armazenar grandes volumes de dados de forma organizada, garantindo a integridade e segurança das informações.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ETL01-DIM_ENTREVISTADO</name>
+    <name>ETL04-FT_PESQUISA</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2024/11/01 17:21:59.017</created_date>
+    <created_date>2024/11/10 19:07:07.812</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2024/11/01 17:21:59.017</modified_date>
-    <key_for_session_key>H4sIAAAAAAAA/wMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2024/11/10 19:07:07.812</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -539,13 +539,38 @@
   </connection>
   <order>
     <hop>
-      <from>Carrega</from>
-      <to>Carrega Atualiza dim_entrevistado</to>
+      <from>Lê Pesquisa</from>
+      <to>lookup entrevistado</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup entrevistado</from>
+      <to>lookup região</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup região</from>
+      <to>lookup pergunta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup pergunta</from>
+      <to>lookup data</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>lookup data</from>
+      <to>Deletar Duplicadas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Deletar Duplicadas</from>
+      <to>Carrega Pesquisa</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Carrega Atualiza dim_entrevistado</name>
+    <name>lookup entrevistado</name>
     <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -559,7 +584,7 @@
     <table>dim_entrevistado</table>
     <connection>dw_pesquisageral</connection>
     <commit>100</commit>
-    <update>Y</update>
+    <update>N</update>
     <fields>
       <key>
         <name>entrevistado_id</name>
@@ -570,26 +595,11 @@
         <from>etl_dt_inicio</from>
         <to>etl_dt_fim</to>
       </date>
-      <field>
-        <name>sexo</name>
-        <lookup>sexo</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>genero</name>
-        <lookup>genero</lookup>
-        <update>Update</update>
-      </field>
-      <field>
-        <name>entrevistado_data_nascimento</name>
-        <lookup>dt_nascimento</lookup>
-        <update>Punch through</update>
-      </field>
       <return>
         <name>sk_entrevistado</name>
-        <rename/>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
+        <rename>lookup_entrevistado</rename>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
         <version>etl_versao</version>
       </return>
     </fields>
@@ -611,13 +621,184 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>272</yloc>
+      <xloc>432</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Carrega</name>
+    <name>lookup região</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_regiao</table>
+    <connection>dw_pesquisageral</connection>
+    <commit>100</commit>
+    <update>N</update>
+    <fields>
+      <key>
+        <name>entrevistado_endereco_id</name>
+        <lookup>nk_regiao</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>etl_dt_inicio</from>
+        <to>etl_dt_fim</to>
+      </date>
+      <return>
+        <name>sk_regiao</name>
+        <rename>lookup_regiao</rename>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>etl_versao</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>sysdate</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup pergunta</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_pergunta</table>
+    <connection>dw_pesquisageral</connection>
+    <commit>100</commit>
+    <update>N</update>
+    <fields>
+      <key>
+        <name>pesquisa_pergunta_id</name>
+        <lookup>nk_pergunta</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>etl_dt_inicio</from>
+        <to>etl_dt_fim</to>
+      </date>
+      <return>
+        <name>sk_pergunta</name>
+        <rename>lookup_pergunta</rename>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>etl_versao</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>sysdate</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>lookup data</name>
+    <type>DimensionLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_data</table>
+    <connection>dw_pesquisageral</connection>
+    <commit>100</commit>
+    <update>N</update>
+    <fields>
+      <key>
+        <name>data_cadastro</name>
+        <lookup>nk_data</lookup>
+      </key>
+      <date>
+        <name/>
+        <from>etl_dt_inicio</from>
+        <to>etl_dt_fim</to>
+      </date>
+      <return>
+        <name>sk_data</name>
+        <rename>lookup_data</rename>
+        <creation_method>autoinc</creation_method>
+        <use_autoinc>Y</use_autoinc>
+        <version>etl_versao</version>
+      </return>
+    </fields>
+    <sequence/>
+    <min_year>1900</min_year>
+    <max_year>2199</max_year>
+    <cache_size>5000</cache_size>
+    <preload_cache>N</preload_cache>
+    <use_start_date_alternative>Y</use_start_date_alternative>
+    <start_date_alternative>sysdate</start_date_alternative>
+    <start_date_field_name/>
+    <useBatch>N</useBatch>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Lê Pesquisa</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -629,9 +810,23 @@
     </partitioning>
     <connection>stage_projetoilhaprimeira</connection>
     <sql>SELECT 
-e.entrevistado_id, sexo, genero.genero, entrevistado_data_nascimento
-FROM entrevistado e
-JOIN genero on e.genero_id = genero.genero_id</sql>
+    ee.entrevistado_endereco_id, 
+    e.entrevistado_id, 
+    pp.pesquisa_pergunta_id, 
+    p.data_cadastro, 
+    p.data_inicio, 
+    p.data_fim, 
+    p.ativo
+FROM 
+    pesquisa p
+JOIN 
+    pesquisa_pergunta pp ON pp.pesquisa_id = p.pesquisa_id
+JOIN 
+    pergunta_resposta pr ON pr.pesquisa_pergunta_id = pp.pesquisa_pergunta_id
+JOIN 
+    entrevistado e ON pr.entrevistado_id = e.entrevistado_id
+JOIN 
+    entrevistado_endereco ee ON e.entrevistado_id = ee.entrevistado_id;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -642,10 +837,33 @@ JOIN genero on e.genero_id = genero.genero_id</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
+        <name>entrevistado_endereco_id</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Lê Pesquisa</origin>
+        <comments>entrevistado_endereco_id</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
         <name>entrevistado_id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Carrega</origin>
+        <origin>Lê Pesquisa</origin>
         <comments>entrevistado_id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
@@ -663,13 +881,36 @@ JOIN genero on e.genero_id = genero.genero_id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>sexo</name>
-        <length>1</length>
+        <name>pesquisa_pergunta_id</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Lê Pesquisa</origin>
+        <comments>pesquisa_pergunta_id</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>data_cadastro</name>
+        <length>6</length>
         <precision>-1</precision>
-        <origin>Carrega</origin>
-        <comments>sexo</comments>
+        <origin>Lê Pesquisa</origin>
+        <comments>data_cadastro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -686,13 +927,13 @@ JOIN genero on e.genero_id = genero.genero_id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>String</type>
+        <type>Timestamp</type>
         <storagetype>normal</storagetype>
-        <name>genero</name>
-        <length>128</length>
+        <name>data_inicio</name>
+        <length>6</length>
         <precision>-1</precision>
-        <origin>Carrega</origin>
-        <comments>genero</comments>
+        <origin>Lê Pesquisa</origin>
+        <comments>data_inicio</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -709,13 +950,36 @@ JOIN genero on e.genero_id = genero.genero_id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Date</type>
+        <type>Timestamp</type>
         <storagetype>normal</storagetype>
-        <name>entrevistado_data_nascimento</name>
+        <name>data_fim</name>
+        <length>6</length>
+        <precision>-1</precision>
+        <origin>Lê Pesquisa</origin>
+        <comments>data_fim</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>pt_BR</date_format_locale>
+        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Boolean</type>
+        <storagetype>normal</storagetype>
+        <name>ativo</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>Carrega</origin>
-        <comments>entrevistado_data_nascimento</comments>
+        <origin>Lê Pesquisa</origin>
+        <comments>ativo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -741,8 +1005,123 @@ JOIN genero on e.genero_id = genero.genero_id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>272</yloc>
+      <xloc>272</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Deletar Duplicadas</name>
+    <type>Delete</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dw_pesquisageral</connection>
+    <commit>100</commit>
+    <lookup>
+      <schema>public</schema>
+      <table>ft_pesquisa</table>
+      <key>
+        <name>lookup_entrevistado</name>
+        <field>sk_entrevistado</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>lookup_regiao</name>
+        <field>sk_regiao</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>lookup_pergunta</name>
+        <field>sk_pergunta</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>lookup_data</name>
+        <field>sk_data</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1056</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Carrega Pesquisa</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>dw_pesquisageral</connection>
+    <schema>public</schema>
+    <table>ft_pesquisa</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>sk_entrevistado</column_name>
+        <stream_name>lookup_entrevistado</stream_name>
+      </field>
+      <field>
+        <column_name>sk_regiao</column_name>
+        <stream_name>lookup_regiao</stream_name>
+      </field>
+      <field>
+        <column_name>sk_pergunta</column_name>
+        <stream_name>lookup_pergunta</stream_name>
+      </field>
+      <field>
+        <column_name>is_ativo</column_name>
+        <stream_name/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1200</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

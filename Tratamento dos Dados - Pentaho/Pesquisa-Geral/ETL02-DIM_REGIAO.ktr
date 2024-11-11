@@ -540,16 +540,6 @@
   <order>
     <hop>
       <from>Carrega Região</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Carrega Atualiza dim_regiao</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
       <to>Carrega Atualiza dim_regiao</to>
       <enabled>Y</enabled>
     </hop>
@@ -621,7 +611,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>624</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
@@ -639,17 +629,11 @@
     </partitioning>
     <connection>stage_projetoilhaprimeira</connection>
     <sql>SELECT
-  entrevistado_endereco_id
-, entrevistado_id
-, logradouro
-, numero
-, complemento
-, bairro
-, cidade
-, uf
-, cep
-, descricao
-FROM "public".entrevistado_endereco
+ee.entrevistado_endereco_id
+, ee.bairro
+, ee.cidade
+, ee.uf
+FROM entrevistado_endereco ee
 </sql>
     <limit>0</limit>
     <lookup/>
@@ -664,101 +648,9 @@ FROM "public".entrevistado_endereco
         <name>entrevistado_endereco_id</name>
         <length>9</length>
         <precision>0</precision>
-        <origin>Table input</origin>
+        <origin>Carrega Região</origin>
         <comments>entrevistado_endereco_id</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>entrevistado_id</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>entrevistado_id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>logradouro</name>
-        <length>256</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>logradouro</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>numero</name>
-        <length>64</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>numero</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>complemento</name>
-        <length>256</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>complemento</comments>
-        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -779,7 +671,7 @@ FROM "public".entrevistado_endereco
         <name>bairro</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>Carrega Região</origin>
         <comments>bairro</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -802,7 +694,7 @@ FROM "public".entrevistado_endereco
         <name>cidade</name>
         <length>256</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>Carrega Região</origin>
         <comments>cidade</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
@@ -825,54 +717,8 @@ FROM "public".entrevistado_endereco
         <name>uf</name>
         <length>2</length>
         <precision>-1</precision>
-        <origin>Table input</origin>
+        <origin>Carrega Região</origin>
         <comments>uf</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>cep</name>
-        <length>8</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>cep</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>pt_BR</date_format_locale>
-        <date_format_timezone>America/Sao_Paulo</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>descricao</name>
-        <length>32</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>descricao</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -898,53 +744,7 @@ FROM "public".entrevistado_endereco
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>entrevistado_id</name>
-      </remove>
-      <remove>
-        <name>logradouro</name>
-      </remove>
-      <remove>
-        <name>numero</name>
-      </remove>
-      <remove>
-        <name>complemento</name>
-      </remove>
-      <remove>
-        <name>cep</name>
-      </remove>
-      <remove>
-        <name>descricao</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
+      <xloc>416</xloc>
       <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>

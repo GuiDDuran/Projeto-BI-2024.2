@@ -1,0 +1,27 @@
+SELECT
+pq.pesquisa_id,
+pq.pesquisa_nome,
+pq.data_cadastro,
+pq.data_inicio,
+pq.data_fim,
+pq.ativo,
+e.entrevistado_id,
+e.sexo as entrevistado_sexo,
+e.entrevistado_data_nascimento,
+ee.entrevistado_endereco_id,
+ee.bairro as entrevistado_bairro,
+ee.cidade as entrevistado_cidade,
+ee.uf as entrevistado_uf,
+ge.genero_id,
+ge.genero,
+pp.pesquisa_pergunta_id,
+pp.pesquisa_pergunta_tipo_id,
+ppt.pesquisa_pergunta_tipo,
+pp.pergunta_texto
+FROM pesquisa_pergunta pp 
+JOIN pergunta_resposta pr on pr.pesquisa_pergunta_id = pp.pesquisa_pergunta_id
+JOIN entrevistado e on e.entrevistado_id = pr.entrevistado_id 
+JOIN entrevistado_endereco ee ON e.entrevistado_id = ee.entrevistado_id
+JOIN genero ge on ge.genero_id = e.genero_id 
+JOIN pesquisa pq on pq.pesquisa_id = pp.pesquisa_id 
+JOIN pesquisa_pergunta_tipo ppt on ppt.pesquisa_pergunta_tipo_id = pp.pesquisa_pergunta_tipo_id;

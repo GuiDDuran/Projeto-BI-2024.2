@@ -276,3 +276,604 @@ NOT DEFERRABLE
 543  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
 590  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
 1130 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+870  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+921  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+921  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+960  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22927 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+148142 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+148143 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_data (
+                sk_data INTEGER NOT NULL,
+                nk_data DATE NOT NULL,
+                desc_data_completa VARCHAR(60) NOT NULL,
+                nr_ano INTEGER NOT NULL,
+                nm_trimestre VARCHAR(20) NOT NULL,
+                nr_ano_trimestre VARCHAR(20) NOT NULL,
+                nr_mes INTEGER NOT NULL,
+                nm_mes VARCHAR(20) NOT NULL,
+                ano_mes VARCHAR(20) NOT NULL,
+                nr_semana INTEGER NOT NULL,
+                ano_semana VARCHAR(20) NOT NULL,
+                nr_dia INTEGER NOT NULL,
+                nr_dia_ano INTEGER NOT NULL,
+                nm_dia_semana VARCHAR(20) NOT NULL,
+                flag_final_semana CHAR(3) NOT NULL,
+                flag_feriado CHAR(3) NOT NULL,
+                nm_feriado VARCHAR(60) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                versao INTEGER NOT NULL,
+                CONSTRAINT sk_data_pk PRIMARY KEY (sk_data)
+)
+148143 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+148144 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+148144 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                sk_data INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+148144 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+148144 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_data_ft_pesquisa_fk
+FOREIGN KEY (sk_data)
+REFERENCES public.dim_data (sk_data)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+148144 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+148145 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+148156 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :9
+153968 [Thread-7] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+154675 [Thread-9] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+186198 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+186198 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+186198 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+186199 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+186199 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+186199 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+186199 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+186200 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :7
+188732 [Thread-10] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+188812 [Thread-12] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+213066 [PokeDB: dw_pesquisageral] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+213120 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.ExceptionHandler  - Uncaught exception
+java.lang.RuntimeException: ca.sqlpower.sqlobject.SQLObjectException: Couldn't connect to database: FATAL: n?o existe o banco de dados "dw_pesquisageral"
+	at ca.sqlpower.sqlobject.SQLObject$1.run(SQLObject.java:193)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+Caused by: ca.sqlpower.sqlobject.SQLObjectException: Couldn't connect to database: FATAL: n?o existe o banco de dados "dw_pesquisageral"
+	at ca.sqlpower.sqlobject.SQLDatabase.getConnection(SQLDatabase.java:686)
+	at ca.sqlpower.sqlobject.SQLDatabase.populateImpl(SQLDatabase.java:153)
+	at ca.sqlpower.sqlobject.SQLObject.populate(SQLObject.java:186)
+	at ca.sqlpower.sqlobject.SQLObject.getChildCount(SQLObject.java:332)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.pokeDatabase(DBTree.java:814)
+	at ca.sqlpower.architect.swingui.DBTree$PokeDBWorker.doStuff(DBTree.java:799)
+	at ca.sqlpower.swingui.SPSwingWorker.run(SPSwingWorker.java:104)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.postgresql.util.PSQLException: FATAL: n?o existe o banco de dados "dw_pesquisageral"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2845)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:176)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:323)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+	at org.postgresql.Driver.makeConnection(Driver.java:446)
+	at org.postgresql.Driver.connect(Driver.java:298)
+	at ca.sqlpower.sql.JDBCDataSource.createConnection(JDBCDataSource.java:296)
+	at ca.sqlpower.sql.JDBCDSConnectionFactory.createConnection(JDBCDSConnectionFactory.java:42)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:294)
+	at org.apache.commons.pool.impl.GenericObjectPool.borrowObject(GenericObjectPool.java:1140)
+	at ca.sqlpower.sqlobject.SQLDatabase.getConnection(SQLDatabase.java:683)
+	... 7 more
+213164 [AWT-EventQueue-0] INFO  ca.sqlpower.util.ExceptionReport  - Posting error report to SQL Power at URL <http://bugs.sqlpower.ca/architect/postReport>
+216299 [AWT-EventQueue-0] ERROR ca.sqlpower.util.ExceptionReport  - Couldn't send exception report to <"http://bugs.sqlpower.ca/architect/postReport">
+java.net.SocketTimeoutException: connect timed out
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at sun.net.NetworkClient.doConnect(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.openServer(Unknown Source)
+	at sun.net.www.http.HttpClient.<init>(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.http.HttpClient.New(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(Unknown Source)
+	at ca.sqlpower.util.ExceptionReport.send(ExceptionReport.java:283)
+	at ca.sqlpower.architect.swingui.ExceptionHandler.handleAndReport(ExceptionHandler.java:117)
+	at ca.sqlpower.architect.swingui.ExceptionHandler.uncaughtException(ExceptionHandler.java:74)
+	at java.lang.ThreadGroup.uncaughtException(Unknown Source)
+	at java.lang.ThreadGroup.uncaughtException(Unknown Source)
+	at java.awt.EventDispatchThread.processException(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+301864 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {}
+316423 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=5432, Database=}
+316426 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=5432, Database=}
+335873 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+336101 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+345688 [AWT-EventQueue-0] WARN  ca.sqlpower.architect.swingui.DBTree  - database already exists in this project.
+392917 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {Hostname=, Port=5432, Database=}
+406393 [PokeDB: dw_pesquisageral] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+414117 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+414117 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+414117 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+414118 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+414118 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+414118 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+414118 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+414119 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :7
+418096 [Thread-13] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+418162 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+418162 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+418162 [Thread-13] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+418163 [Thread-15] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+418287 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Thu Nov 07 16:41:31 BRT 2024
+418288 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: PlayPen Database
+418288 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: PlayPen Database
+418291 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+418459 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+418495 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+418530 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+418533 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+418558 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+418562 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+418565 [Thread-15] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 7 out of 7 statements.
+442592 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - SQL_FILE_FILTER:SQL Script Files:[sql, ddl]
+975758 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+975759 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+975759 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+975759 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+975759 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+975760 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+975760 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+975760 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :7
+977471 [Thread-16] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+977533 [Thread-16] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+977533 [Thread-16] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+977533 [Thread-16] ERROR ca.sqlpower.architect.ddl.ConflictResolver  - Relationship conflicts are not supported yet!
+977534 [Thread-18] INFO  ca.sqlpower.sql.JDBCDataSource  - Driver Class org.postgresql.Driver loaded without exception
+977584 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Starting DDL Generation at Thu Nov 07 16:50:50 BRT 2024
+977585 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Database Target: PlayPen Database
+977585 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Playpen Dump: PlayPen Database
+977586 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+CREATE TABLE public.dim_pergunta (
+                sk_pergunta INTEGER NOT NULL,
+                nk_pergunta INTEGER NOT NULL,
+                tp_pergunta VARCHAR(128) NOT NULL,
+                is_ativo BOOLEAN NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_pergunta PRIMARY KEY (sk_pergunta)
+)
+977922 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.dim_regiao (
+                sk_regiao INTEGER NOT NULL,
+                sk_regiao_1 INTEGER NOT NULL,
+                bairro VARCHAR(128) NOT NULL,
+                cidade VARCHAR(128) NOT NULL,
+                uf CHAR(2) NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_regiao PRIMARY KEY (sk_regiao)
+)
+977956 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.dim_entrevistado (
+                sk_entrevistado INTEGER NOT NULL,
+                nk_entrevistado INTEGER NOT NULL,
+                sexo CHAR(1) NOT NULL,
+                genero VARCHAR(128) NOT NULL,
+                dt_nascimento DATE NOT NULL,
+                etl_dt_inicio TIMESTAMP NOT NULL,
+                etl_dt_fim TIMESTAMP NOT NULL,
+                etl_versao INTEGER NOT NULL,
+                CONSTRAINT sk_entrevistado PRIMARY KEY (sk_entrevistado)
+)
+977992 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+CREATE TABLE public.ft_pesquisa (
+                sk_regiao INTEGER NOT NULL,
+                sk_entrevistado INTEGER NOT NULL,
+                sk_pergunta INTEGER NOT NULL,
+                dt_inicio TIMESTAMP NOT NULL,
+                dt_fim TIMESTAMP NOT NULL,
+                is_ativo BOOLEAN NOT NULL
+)
+977994 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_pergunta_ft_pesquisa_fk
+FOREIGN KEY (sk_pergunta)
+REFERENCES public.dim_pergunta (sk_pergunta)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+977996 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_regiao_ft_pesquisa_fk
+FOREIGN KEY (sk_regiao)
+REFERENCES public.dim_regiao (sk_regiao)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+977997 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - executing: 
+
+ALTER TABLE public.ft_pesquisa ADD CONSTRAINT dim_entrevistado_ft_pesquisa_fk
+FOREIGN KEY (sk_entrevistado)
+REFERENCES public.dim_entrevistado (sk_entrevistado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+977999 [Thread-18] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - Successfully executed 7 out of 7 statements.

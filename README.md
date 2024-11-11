@@ -139,14 +139,18 @@ A modelagem do Data Warehouse (DW) foi feita com o Power Architect e foi projeta
 Tratamento Entrevistado 
 ![Tratamento_Entrevistado](https://github.com/user-attachments/assets/f5ef0907-eacc-4c3f-8d7f-b286eb62e387)
 
+
 Tratamento Pergunta
 ![Tratamento_Pergunta](https://github.com/user-attachments/assets/67eb5966-5aad-4153-b522-ce579bb9db19)
+
 
 Tratamento Pesquisa 
 ![Tratamento_Pesquisa](https://github.com/user-attachments/assets/11003181-edec-4501-9998-e0e371ad29ba)
 
+
 Tratamento Região
 ![Tratamento_Região](https://github.com/user-attachments/assets/688777b2-b2b2-40c7-ba1e-bba8311bc6fe)
+
 
 ## Tecnologias Utilizadas
 

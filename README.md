@@ -167,4 +167,4 @@ O Pentaho foi utilizado como ferramenta de ETL (Extração, Transformação e Ca
 
 ## Considerações Finais
 
-Este projeto foi desenvolvido com o objetivo de fornecer uma análise para a Ilha Primeira de fácil crescimento e manutenção de novas pesquisas e entrevistados ao longo do tempo. O banco de dados está preparado para armazenar grandes volumes de dados de forma organizada, garantindo a integridade e segurança das informações.
+Este projeto foi desenvolvido com o objetivo de fornecer uma análise para a Ilha Primeira de fácil crescimento, manutenção de novas pesquisas e entrevistados ao longo do tempo. O banco de dados está preparado para armazenar grandes volumes de dados de forma organizada, garantindo a integridade e segurança das informações.

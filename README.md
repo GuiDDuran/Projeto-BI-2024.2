@@ -1,6 +1,6 @@
-# Projeto de Pesquisa e Entrevistas - Banco de Dados
+# Projeto de Pesquisa e Entrevistas - Censo Ilha Primeira 
 
-Este projeto foi desenvolvido para gerenciar pesquisas e entrevistas, incluindo o cadastro de entrevistados, suas informações pessoais, perguntas e respostas das pesquisas, além de controle de dados relacionados a telefones e endereços. O banco de dados foi modelado para ser escalável, seguro e de fácil manutenção.
+Este projeto foi desenvolvido para criar um sistema capaz de gerenciar pesquisas e entrevistas, incluindo o cadastro de entrevistados, suas informações pessoais, perguntas e respostas das pesquisas, além do controle de dados relacionados a telefones e endereços. Foi criado um banco de dados que foi modelado para ser escalável, seguro e de fácil manutenção.
 
 ## Estrutura do Projeto
 
